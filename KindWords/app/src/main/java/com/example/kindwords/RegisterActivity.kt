@@ -1,9 +1,11 @@
 package com.example.kindwords
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -14,6 +16,16 @@ class RegisterActivity : AppCompatActivity() {
 
 
     }
+
+    fun Sign_Up(view: View) {
+        // validate and log in
+        startActivity(Intent(this@RegisterActivity, DashboardActivity::class.java ))
+    }
+
+    fun Login(view: View) {
+        startActivity(Intent(this@RegisterActivity, LoginActivity::class.java ))
+    }
+
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.

@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
         // TODO
         // this is where we decide where to send the client
         // right now we just send them to the register activity
-        startActivity(Intent(this@MainActivity, RegisterActivity::class.java ))
+        startActivity(Intent(this@MainActivity, LoginActivity::class.java ))
 
     }
 

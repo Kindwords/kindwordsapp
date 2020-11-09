@@ -48,6 +48,7 @@
             android:layout_weight="1"
             android:background="#7EF1F0F0" />
 
+
         <ScrollView
             android:id="@+id/story_scroll_view"
             android:layout_width="match_parent"
@@ -66,7 +67,6 @@
                 android:textSize="18sp" />
 
         </ScrollView>
-
 
         <View
             android:id="@+id/view5"

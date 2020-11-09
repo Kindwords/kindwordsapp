@@ -6,8 +6,36 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="user_name_hint">User Name</string>
+    <string name="password_hint">Password</string>
+    <string name="login_button_str">LOGIN</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="sign_up_str">Create Account</string>
+    <string name="email_hint_str">Email</string>
+    <string name="confirm_password_hint_str">Confirm Password</string>
+    <string name="sign_up_button_str">SIGN UP</string>
+    <string name="login_str">LOGIN</string>
+    <string name="img_str">img</string>
+    <string name="user_name">JOHN DOE</string>
+    <string name="points_str">0</string>
+    <string name="line_str">___________________________</string>
+    <string name="inbox">inbox</string>
+    <string name="profile_img_button">profile_img_button</string>
+    <string name="advice_link_button">advice_link_button</string>
+    <string name="story_str">
+        Life\n\nAt 8 A.M. this morning, after nearly four months of lifelessness in her hospital bed, we took my mom off life support. And her heart continued beating on its own. And she continued breathing on her own. Then this evening, when I squeezed her hand three times, she squeezed back three times.
+        \n\nAt 8 A.M. this morning, after nearly four months of lifelessness in her hospital bed, we took my mom off life support. And her heart continued beating on its own. And she continued breathing on her own. Then this evening, when I squeezed her hand three times, she squeezed back three times.
+        \n\nAt 8 A.M. this morning, after nearly four months of lifelessness in her hospital bed, we took my mom off life support. And her heart continued beating on its own. And she continued breathing on her own. Then this evening, when I squeezed her hand three times, she squeezed back three times.
+        \n\nAt 8 A.M. this morning, after nearly four months of lifelessness in her hospital bed, we took my mom off life support. And her heart continued beating on its own. And she continued breathing on her own. Then this evening, when I squeezed her hand three times, she squeezed back three times.
+        \n\nAt 8 A.M. this morning, after nearly four months of lifelessness in her hospital bed, we took my mom off life support. And her heart continued beating on its own. And she continued breathing on her own. Then this evening, when I squeezed her hand three times, she squeezed back three times.
+        \n\nAt 8 A.M. this morning, after nearly four months of lifelessness in her hospital bed, we took my mom off life support. And her heart continued beating on its own. And she continued breathing on her own. Then this evening, when I squeezed her hand three times, she squeezed back three times.
+        \n\nAt 8 A.M. this morning, after nearly four months of lifelessness in her hospital bed, we took my mom off life support. And her heart continued beating on its own. And she continued breathing on her own. Then this evening, when I squeezed her hand three times, she squeezed back three times.
+    </string>
+    <string name="advice_str">\n Advice\n \nA narrow focus brings big results. The number one reason people give up so fast is because they tend to look at how far they still have to go instead of how far they have come. But it\'s a series of small wins that can give us the most significant success.</string>
+    <string name="write_advice_hint">Write Advice Here!</string>
+    <string name="send_button_str">SEND</string>
+    <string name="write_your_letter_here_hint_str">Write your letter here!</string>
+    <string name="fake_advice_tab_str">------------------------------------------------------------- \n \n First Advice Item, click to read! \n\n-------------------------------------------------------------</string>
     <string name="about_us">About Us</string>
+
 </resources>

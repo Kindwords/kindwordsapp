@@ -1,44 +1,41 @@
 package com.example.kindwords
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.TextView
+import android.view.animation.LinearInterpolator
+import android.widget.*
+import androidx.constraintlayout.widget.ConstraintLayout
+import com.yuyakaido.android.cardstackview.*
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
-class LoginActivity : AppCompatActivity() {
+class DashboardActivity : AppCompatActivity(){
 
     lateinit var userNameView : TextView
     lateinit var userPasswordView: TextView
+    private lateinit var layoutManager: CardStackLayoutManager
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
-        setSupportActionBar(findViewById(R.id.toolbar_register))
-
-        //TODO: setup views
+        setContentView(R.layout.activity_dashboard)
+        setSupportActionBar(findViewById(R.id.toolbar_dashboard))
 
 
-    }
-
-    fun Create_Account(view: View) {
-
-        var i = Intent(this@LoginActivity, RegisterActivity::class.java )
-        startActivity(i)
 
     }
 
-    fun Login(view: View) {
 
-        startActivity(Intent(this@LoginActivity, DashboardActivity::class.java ))
 
-    }
+
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.menu_register_login, menu)
+        menuInflater.inflate(R.menu.menu_dashboard, menu)
         return true
     }
 
@@ -51,4 +48,6 @@ class LoginActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
+
+
 }
