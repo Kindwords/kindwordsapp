@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
 
         // if user is signed in, skip sign in process
         // else let them sign in
-        // auth.signOut() // for testing until we implement the signout function
+        auth.signOut() // for testing until we implement the signout function
         if (auth.currentUser != null) { // user is signed in
             val dashboardActivityIntent =
                 Intent(this@MainActivity, DashboardActivity::class.java)
