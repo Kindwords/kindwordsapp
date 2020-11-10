@@ -3,6 +3,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:panelFullBackground="@color/white" >
 
+
+
+    <item
+        android:id="@+id/dashboard"
+        android:icon="@drawable/dashboard"
+        app:showAsAction="always"
+        android:title="" />
+    <item
+    android:id="@+id/messages"
+    android:icon="@drawable/messages_unread"
+    app:showAsAction="always"
+    android:title="" />
+
+    <item
+        android:id="@+id/account"
+        android:icon="@drawable/account"
+        app:showAsAction="always"
+        android:title="" />
+
+
     <item
         android:id="@+id/sign_out_action"
         android:orderInCategory="100"
@@ -15,8 +35,10 @@
         android:title="@string/delete_account"
         app:showAsAction="never" />
     <item
-        android:id="@+id/dashboard_credit_action"
-        android:orderInCategory="100"
-        android:title="@string/credits"
-        app:showAsAction="never" />
+    android:id="@+id/dashboard_credit_action"
+    android:orderInCategory="100"
+    android:title="@string/credits"
+    app:showAsAction="never" />
+
+
 </menu>
