@@ -4,33 +4,30 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import android.view.animation.LinearInterpolator
 import android.widget.*
-import androidx.constraintlayout.widget.ConstraintLayout
 import com.yuyakaido.android.cardstackview.*
-import androidx.recyclerview.widget.DefaultItemAnimator
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+
 
 class DashboardActivity : AppCompatActivity(){
 
     lateinit var userNameView : TextView
     lateinit var userPasswordView: TextView
     private lateinit var layoutManager: CardStackLayoutManager
+    private lateinit var uid: String
+    private lateinit var databaseReference: DatabaseReference
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
         setSupportActionBar(findViewById(R.id.toolbar_dashboard))
-
-
+        uid = intent.getStringExtra(UID)!!
+        databaseReference = FirebaseDatabase.getInstance().getReference("users/$uid")
+        databaseReference.setValue("hello World")
 
     }
-
-
-
 
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -47,6 +44,10 @@ class DashboardActivity : AppCompatActivity(){
             R.id.action_settings -> true
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    companion object {
+        val UID = "com.example.kindwords.uid"
     }
 
 

@@ -63,6 +63,7 @@
         android:paddingStart="20dp"
         android:paddingEnd="25dp"
         android:textColorHint="@color/black"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -74,7 +75,7 @@
 
 
     <EditText
-    android:id="@+id/password"
+    android:id="@+id/register_password"
     android:layout_width="0dp"
     android:layout_height="0dp"
     android:layout_weight="2"
@@ -88,6 +89,7 @@
     android:paddingStart="20dp"
     android:paddingEnd="25dp"
     android:textColorHint="@color/black"
+        android:textColor="@color/black"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintHeight_percent="0.06"
@@ -100,7 +102,7 @@
 
 
         <EditText
-            android:id="@+id/confirm_password"
+            android:id="@+id/confirm_register_password"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginLeft="40dp"
@@ -116,6 +118,7 @@
             android:paddingStart="20dp"
             android:paddingEnd="25dp"
             android:textColorHint="@color/black"
+            android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_percent="0.06"
@@ -134,7 +137,7 @@
             android:layout_marginRight="100dp"
             android:layout_weight="2"
             android:background="@drawable/rounder_button"
-            android:onClick="Sign_Up"
+            android:onClick="signUp"
             android:text="@string/sign_up_button_str"
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -158,7 +161,7 @@
             android:clickable="true"
             android:focusable="true"
             android:gravity="center"
-            android:onClick="Login"
+            android:onClick="login"
             android:text="@string/login_str"
             android:textColor="@color/black"
             android:textSize="18sp"
