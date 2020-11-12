@@ -27,6 +27,5 @@ class Validators {
                 && password.length in 6..8
                 && passwordRegex.matches(password)
 
-
     }
 }

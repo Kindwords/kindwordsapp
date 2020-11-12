@@ -8,6 +8,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 
 class LoginActivity : AppCompatActivity() {
@@ -21,9 +22,8 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
         setSupportActionBar(findViewById(R.id.toolbar_register))
 
-
-
-
+        userNameView = findViewById(R.id.email);
+        userPasswordView = findViewById(R.id.password);
     }
     // case where users do no have an account, redirect them to registration page
     fun createAccount(view: View) {
@@ -33,8 +33,8 @@ class LoginActivity : AppCompatActivity() {
 
     // log in a user
     fun login(view: View) {
-        val user = "brianmile10@yahoo.com"
-        val pass = "123456"
+        val user = userNameView.text.toString()
+        val pass = userPasswordView.text.toString()
         Log.i(TAG, "attempting to log user in")
         auth.signInWithEmailAndPassword(user, pass).addOnCompleteListener{ task ->
             if(task.isSuccessful) {
@@ -44,15 +44,11 @@ class LoginActivity : AppCompatActivity() {
             }
             else wrongPass()
         }
-
-
-
     }
 
-    //Toast mesage informing user about wrong credentials
-    //TODO display a toast telling the user they put in the wrong credentials
     private fun wrongPass(){
         Log.i(TAG, "Login failed. wrong credentials")
+        Toast.makeText(applicationContext, "Invalid log-in credentials! Please try again.", Toast.LENGTH_LONG).show()
     }
 
 

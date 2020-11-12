@@ -8,6 +8,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 
 class RegisterActivity : AppCompatActivity() {
@@ -15,6 +16,7 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var passwordTextView: TextView
     private lateinit var confirmPasswordView : TextView
     private lateinit var auth: FirebaseAuth
+    private var validator = Validators()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,20 +37,28 @@ class RegisterActivity : AppCompatActivity() {
         val user = emailTextView.text.toString()
         val pass = passwordTextView.text.toString()
         val passConfirm = confirmPasswordView.text.toString()
-        // TODO: verify that user and pass are not empty strings
-        // TODO: check that both pass and passConfirm match
-        // TODO: validate username and password using validators
 
-        // Hint use if statements for all the cases and put the code below in the final else case
-        // Call Toast methods to let user know of issues
-
-        Log.i(LoginActivity.TAG, "Attempting to Log register User")
-        auth.createUserWithEmailAndPassword(user, pass)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) autoLogin()
-                else signUpFailed()
-            }
-
+        if (user.replace(" ", "") == "" || pass.replace(" ", "") == "") {
+            emptyLoginField()
+        }
+        else if (pass != passConfirm) {
+            failedPasswordConfirmation()
+        }
+        else if (!validator.validEmail(user)) {
+            failedEmailValidation()
+        }
+        else if (!validator.validPassword(pass)) {
+            failedPasswordValidation()
+        }
+        else
+        {
+            Log.i(LoginActivity.TAG, "Attempting to Log register User")
+            auth.createUserWithEmailAndPassword(user, pass)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) autoLogin()
+                    else signUpFailed()
+                }
+        }
     }
 
     // auto login user so they don't need to log in again
@@ -78,15 +88,38 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     // Log details for testing
+    //Toast.makeText(applicationContext, "Please enter a valid password!", Toast.LENGTH_LONG).show()
+    //Toast.makeText(applicationContext, "Registration successful!", Toast.LENGTH_LONG).show()
+    //                        progressBar!!.visibility = View.GONE
     //TODO: toast message telling user password failed
-    private fun loginFailed() {}
-    //TODO: toast message telling user signup failed
-    private fun signUpFailed() {}
-    //TODO: toast message telling user passwords do not much
-    private fun passwordsNoMatch() {}
-    //TODO: toast message telling user they need to input the correct credentials
-    private fun invalidCredentials() {}
+    private fun emptyLoginField() {
+        Toast.makeText(applicationContext, "Please enter a non-empty Username & Password!", Toast.LENGTH_LONG).show()
+        return
+    }
 
+    private fun failedPasswordConfirmation() {
+        Toast.makeText(applicationContext, "Please make sure the passwords match!", Toast.LENGTH_LONG).show()
+        return
+    }
+
+    private fun failedEmailValidation() {
+        Toast.makeText(applicationContext, "Please enter a valid email!", Toast.LENGTH_LONG).show()
+        return
+    }
+
+    private fun failedPasswordValidation() {
+        Toast.makeText(applicationContext, "Please enter a valid password!", Toast.LENGTH_LONG).show()
+        return
+    }
+    private fun loginFailed() {
+        Toast.makeText(applicationContext, "Invalid log-in credentials! Please try again.", Toast.LENGTH_LONG).show()
+        return
+    }
+
+    private fun signUpFailed() {
+        Toast.makeText(applicationContext, "Sign-up failed. Try a different email or wait a few minutes.", Toast.LENGTH_LONG).show()
+        return
+    }
 
     // create tool bar menu options
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
