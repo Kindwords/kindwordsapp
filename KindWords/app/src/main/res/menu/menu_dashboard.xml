@@ -12,7 +12,7 @@
         android:title="" />
     <item
     android:id="@+id/messages"
-    android:icon="@drawable/messages_unread"
+    android:icon="@drawable/messages_read"
     app:showAsAction="always"
     android:title="" />
 

@@ -1,6 +1,7 @@
 package com.example.kindwords
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
@@ -25,7 +26,20 @@ class DashboardActivity : AppCompatActivity(){
         setSupportActionBar(findViewById(R.id.toolbar_dashboard))
         uid = intent.getStringExtra(UID)!!
         databaseReference = FirebaseDatabase.getInstance().getReference("users/$uid")
-        databaseReference.setValue("hello World")
+
+        /* data base implementation and testing block 
+        val user = User(databaseReference)
+        user.addPost()
+        user.addPost()
+
+        for( post in user.posts) {
+            post.addReply()
+            post.addReply()
+
+        }
+        //databaseReference.setValue("hello World")
+
+         */
 
     }
 
@@ -47,6 +61,7 @@ class DashboardActivity : AppCompatActivity(){
     }
 
     companion object {
+        val TAG = "TAG"
         val UID = "com.example.kindwords.uid"
     }
 

@@ -9,6 +9,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var emailTextView: TextView
@@ -45,7 +46,9 @@ class RegisterActivity : AppCompatActivity() {
         Log.i(LoginActivity.TAG, "Attempting to Log register User")
         auth.createUserWithEmailAndPassword(user, pass)
             .addOnCompleteListener { task ->
-                if (task.isSuccessful) autoLogin()
+                if (task.isSuccessful) {
+                    autoLogin()
+                }
                 else signUpFailed()
             }
 
