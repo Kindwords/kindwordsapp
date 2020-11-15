@@ -5,11 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".readAdviceActivity">
-
+    tools:context=".readPostActivity">
 
     <LinearLayout
-        android:id="@+id/linearlayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#F4F0F0"
@@ -21,28 +19,29 @@
             android:layout_width="90dp"
             android:layout_height="90dp"
             android:contentDescription="@string/img_str"
-            android:onClick="go_to_advice_list"
             android:padding="20dp"
-            app:srcCompat="@drawable/advice_link" />
+            app:srcCompat="@drawable/letter"
+            android:onClick="go_to_post_list"/>
 
 
         <ScrollView
-            android:id="@+id/scrollview"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginLeft="40dp"
-            android:layout_marginTop="10dp"
             android:layout_marginRight="40dp"
             android:layout_weight="6.5"
             android:background="@drawable/letter_background">
 
+
             <TextView
-                android:id="@+id/letter_or_post"
+                android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
                 android:gravity="center|top"
                 android:padding="20dp"
-                android:text="@string/advice_str" />
+                android:text="@string/story_str" />
+
         </ScrollView>
 
         <ImageView
@@ -58,30 +57,7 @@
         <View
             android:id="@+id/view"
             android:layout_width="match_parent"
-            android:layout_height="20dp" />
-
-        <RatingBar
-            android:id="@+id/ratingBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="@drawable/rounder_items"
-            android:numStars="5" />
+            android:layout_height="10dp"/>
 
     </LinearLayout>
-
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center"
-        android:contentDescription="@string/img_str"
-        android:focusable="true"
-        android:onClick="letter_or_advice"
-        android:scaleType="fitXY"
-        app:srcCompat="@drawable/letter"
-        android:padding="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/main_linearLayout"
-        />
 </androidx.constraintlayout.widget.ConstraintLayout>

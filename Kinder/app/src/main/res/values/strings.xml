@@ -30,4 +30,5 @@
     <string name="send_button_str">SEND</string>
     <string name="write_your_letter_here_hint_str">Write your letter here!</string>
     <string name="fake_advice_tab_str">------------------------------------------------------------- \n \n First Advice Item, click to read! \n\n-------------------------------------------------------------</string>
+    <string name="rstr">TextView</string>
 </resources>

@@ -15,6 +15,7 @@ class LettersActivity : AppCompatActivity() {
 
     lateinit var story_text_view:TextView
     lateinit var fade:Animation
+    lateinit var hand_fade:Animation
     lateinit var pray_sticker:ImageView
     lateinit var write_advice__sticker:ImageView
     var b = true
@@ -25,11 +26,29 @@ class LettersActivity : AppCompatActivity() {
 
         story_text_view = findViewById<LinearLayout>(R.id.main_linearLayout).findViewById<ScrollView>(R.id.story_scroll_view).findViewById<TextView>(R.id.story)
         fade = AnimationUtils.loadAnimation(this, R.anim.fade)
+        hand_fade =  AnimationUtils.loadAnimation(this, R.anim.hand_fade)
+
         pray_sticker = findViewById(R.id.pray_sticker)
         write_advice__sticker = findViewById(R.id.write_advice_sticker)
 
         pray_sticker.alpha = 0F
         write_advice__sticker.alpha = 0F
+
+        hand_fade.setAnimationListener(
+            object : Animation.AnimationListener {
+                override fun onAnimationRepeat(animation: Animation?) {
+                }
+
+                override fun onAnimationEnd(animation: Animation?) {
+
+                    pray_sticker.alpha = 0F
+
+                }
+
+                override fun onAnimationStart(animation: Animation?) {
+                }
+            })
+
 
         fade.setAnimationListener(object : Animation.AnimationListener {
             override fun onAnimationRepeat(animation: Animation?) {
@@ -37,11 +56,7 @@ class LettersActivity : AppCompatActivity() {
 
             override fun onAnimationEnd(animation: Animation?) {
 
-                pray_sticker.alpha = 0F
-
-                /*
-
-                if (b) {
+                /*if (b) {
                     story_text_view.alpha = 0.0F
                 }
                 else {
@@ -63,7 +78,7 @@ class LettersActivity : AppCompatActivity() {
 
         story_text_view.startAnimation(fade);
         pray_sticker.alpha = 1F
-        pray_sticker.startAnimation(fade)
+        pray_sticker.startAnimation(hand_fade)
 
     }
 
@@ -88,6 +103,11 @@ class LettersActivity : AppCompatActivity() {
 
     fun go_to_advice_list(view: View) {
         var i = Intent(this@LettersActivity, AdviceListActivity::class.java )
+        startActivity(i)
+
+    }
+    fun read_Post(view: View){
+        var i = Intent(this@LettersActivity, PostListActivity::class.java )
         startActivity(i)
 
     }

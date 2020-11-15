@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="adivce">
+        <item>Hi   ....</item>
+        <item>Hola!  ..</item>
+        <item>sorry  ..</item>
+        <item>dear ....</item>
+        <item>I know...</item>
+        <item>advice6</item>
+        <item>advice7</item>
+        <item>advice8</item>
+        <item>advice9</item>
+        <item>advice10</item>
+        <item>advice11</item>
+        <item>advice12</item>
+        <item>advice13</item>
+        <item>advice14</item>
+    </string-array>
+
+    <string-array name="post">
+        <item>Jan, 15, 2020_____ Hi   ....</item>
+        <item>Mar, 07, 2020_____ Hola!  ..</item>
+        <item>Jun, 03, 2020_____ sorry  ..</item>
+        <item>Jul, 10, 2020_____ dear ....</item>
+        <item>Sep, 23, 2020_____ I know...</item>
+        <item>Nov, 15, 2020_____ post6</item>
+        <item>Nov, 15, 2020_____ post7</item>
+        <item>Nov, 15, 2020_____ post8</item>
+        <item>Nov, 15, 2020_____ post9</item>
+        <item>Nov, 15, 2020_____ post10</item>
+        <item>Nov, 15, 2020_____ post11</item>
+        <item>Nov, 15, 2020_____ post12</item>
+        <item>Nov, 15, 2020_____ post13</item>
+        <item>Nov, 15, 2020_____ post14</item>
+    </string-array>
+
+</resources>

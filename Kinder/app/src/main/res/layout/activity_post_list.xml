@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context=".AdviceListActivity">
+    tools:context=".PostListActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,7 +22,6 @@
             android:onClick="go_to_letters"
             android:padding="20dp"
             app:srcCompat="@drawable/letter" />
-
 
         <ListView
             android:id="@+id/list_view"
