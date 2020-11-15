@@ -1,117 +1,69 @@
 package com.example.kindwords
 
 import android.util.Log
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import java.util.*
+import javax.security.auth.Subject
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 
-class User(reference: DatabaseReference = FirebaseDatabase.getInstance().reference) {
-    private var dReference: DatabaseReference = reference
+class Post(
+    var postId: String = "",
+    var authorId: String = "",
+    var subject: String = "",
+    var message: String = "",
+    var day: String = "",
+    var time: String = "",
+    var viewCount: Int = 0,
+    var replyCount: Int = 0) {
+    private var reference = FirebaseDatabase.getInstance().reference.child("posts")
 
-    var posts = ArrayList<Post>()
-    init { //setup database listeners
-
-        // setup post listeners
-            dReference.child("posts").addChildEventListener(object : ChildEventListener {
-                override fun onChildAdded(dataSnapshot: DataSnapshot, previousChildName: String?) {
-                    dataSnapshot.getValue(Post::class.java)?.let { post ->
-                        posts.add(post)
-                        Log.i("TAG", "Post Added")
-                        5
-
-                    }
-
-                }
-
-                override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
-                    TODO("Not yet implemented")
-                }
-
-                override fun onChildRemoved(snapshot: DataSnapshot) {
-                    TODO("Not yet implemented")
-                }
-
-                override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
-                    TODO("Not yet implemented")
-                }
-
-                override fun onCancelled(error: DatabaseError) {
-                    TODO("Not yet implemented")
-                }
-            })
-        }
-
-    @Exclude //from database data
-    fun getReference() = dReference
-
-    @Exclude //from database data
-    fun addPost(){
-        val key = (dReference.child("posts").push()).key.toString() // generate a new key
-        val post = Post(dReference.child("posts").child(key)) // create a new post object
-        dReference.child("posts").child(key).setValue(post) // add the post to the databse
-
+    // initialization
+    //--------------------------------------------------------------------------------------------
+    init {
     }
-}
+    //--------------------------------------------------------------------------------------------
 
-class Post(reference: DatabaseReference = FirebaseDatabase.getInstance().reference) {
-    var replies = ArrayList<Reply>()
-    private var dReference: DatabaseReference = reference
-    var date: Dates = Dates()
-    var viewCount: Int = 0
-    var replyCount: Int = 0
+    // class attributes
+    //---------------------------------------------------------------------------------------------
+    @Exclude
+    fun addPostToDataBase(){
+        postId = (reference.push()).key.toString()
+        reference.child(postId).setValue(this)}
 
-    init { //setup database listeners
-        dReference.child("replies").addChildEventListener(object : ChildEventListener {
-            override fun onChildAdded(dataSnapshot: DataSnapshot, previousChildName: String?) {
-                dataSnapshot.getValue(Reply::class.java)?.let { reply ->
-                    replies.add(reply)
-                    Log.i("TAG", "reply added")
-                }
-
-            }
-
-            override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
-
-            }
-
-            override fun onChildRemoved(snapshot: DataSnapshot) {
-            }
-
-            override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
-
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-            }
-
-
-        })
+    @Exclude
+    fun deletePostFromDatabase() {
+        reference.child(postId).removeValue()
     }
 
     @Exclude
-    fun getReference() = dReference
-
+    fun getDashBoardPosts(){}
     @Exclude
-    fun addReply() {
-        val key = (dReference.child("replies").push()).key.toString()
-        val reply = Reply(dReference.child("replies").child(key))
-        dReference.child("replies").child(key).setValue(reply)
-    }
-    fun incrementPostViewCount() {}
-    fun incrementPostReplyCount() {}
-}
+    fun getMyPosts(){}
+    //---------------------------------------------------------------------------------------------
 
-class Dates {
-    var day: String = ""
-    var time: String = ""
+
 
 }
-class Reply(reference: DatabaseReference = FirebaseDatabase.getInstance().reference){
-    private var dReference = reference
-    var date: Dates = Dates()
+
+
+class Reply(uid: String = ""){
+    // private attributes
+    private var auth: FirebaseAuth = FirebaseAuth.getInstance()
+    private var dReference: DatabaseReference =
+        FirebaseDatabase.getInstance().reference.child("replies").child(uid)
+    private var replyId = uid
+
+    // database attributes
+    // var date:
     var seenStatus: Boolean = false
 
     init { //no need for listeners as contents of replies cant be modified
-            }
+    }
+
+    @Exclude
+    fun addReply(){}
 
 }

@@ -27,19 +27,9 @@ class DashboardActivity : AppCompatActivity(){
         uid = intent.getStringExtra(UID)!!
         databaseReference = FirebaseDatabase.getInstance().getReference("users/$uid")
 
-        /* data base implementation and testing block 
-        val user = User(databaseReference)
-        user.addPost()
-        user.addPost()
-
-        for( post in user.posts) {
-            post.addReply()
-            post.addReply()
-
-        }
-        //databaseReference.setValue("hello World")
-
-         */
+        val post = Post()
+        post.message = "Welcome"
+        post.addPostToDataBase()
 
     }
 
