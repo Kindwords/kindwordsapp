@@ -10,7 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#F4F0F0"
+        android:background="#B9EFEDED"
         android:orientation="vertical"
         android:weightSum="10">
 
@@ -19,9 +19,9 @@
             android:layout_width="90dp"
             android:layout_height="90dp"
             android:contentDescription="@string/img_str"
+            android:onClick="go_to_post_list"
             android:padding="20dp"
-            app:srcCompat="@drawable/letter"
-            android:onClick="go_to_post_list"/>
+            app:srcCompat="@drawable/letter" />
 
 
         <ScrollView
@@ -57,7 +57,7 @@
         <View
             android:id="@+id/view"
             android:layout_width="match_parent"
-            android:layout_height="10dp"/>
+            android:layout_height="10dp" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
