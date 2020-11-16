@@ -48,7 +48,6 @@
                 android:layout_height="wrap_content"
                 android:background="#ffff"
                 android:gravity="center"
-                android:padding="20dp"
                 android:text="@string/story_str"
                 android:textColor="#393838"
                 android:textSize="18sp" />
