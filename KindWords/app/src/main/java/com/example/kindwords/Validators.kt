@@ -17,7 +17,6 @@ class Validators {
         return emailRegex.matches(email)
     }
 
-    // TODO: Validate password
     // at least 1 letter, at least 1 number, min 6 chars, max 8 chars
     fun validPassword(password: String?) : Boolean {
         val passwordRegex = Regex("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{4,}\$")

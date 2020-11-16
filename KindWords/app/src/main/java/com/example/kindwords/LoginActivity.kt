@@ -35,15 +35,22 @@ class LoginActivity : AppCompatActivity() {
     fun login(view: View) {
         val user = userNameView.text.toString()
         val pass = userPasswordView.text.toString()
-        Log.i(TAG, "attempting to log user in")
-        auth.signInWithEmailAndPassword(user, pass).addOnCompleteListener{ task ->
-            if(task.isSuccessful) {
-                val intent = Intent(this@LoginActivity, DashboardActivity::class.java )
-                intent.putExtra(UID, auth.uid)
-                startActivity(intent)
+        if (user.replace(" ", "") == "" || pass.replace(" ", "") == "") {
+            emptyLoginField()
+        } else {
+            Log.i(TAG, "attempting to log user in")
+            auth.signInWithEmailAndPassword(user, pass).addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val intent = Intent(this@LoginActivity, DashboardActivity::class.java)
+                    startActivity(intent)
+                } else wrongPass()
             }
-            else wrongPass()
         }
+    }
+
+    private fun emptyLoginField() {
+        Toast.makeText(applicationContext, "Please enter a non-empty Username & Password!", Toast.LENGTH_LONG).show()
+        return
     }
 
     private fun wrongPass(){

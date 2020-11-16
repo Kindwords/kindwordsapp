@@ -14,29 +14,17 @@ class MainActivity : AppCompatActivity() {
 
         // if user is signed in, skip sign in process
         // else let them sign in
-        //auth.signOut() // for testing until we implement the signout function
         if (auth.currentUser != null) { // user is signed in
-            val dashboardActivityIntent =
-                Intent(this@MainActivity, DashboardActivity::class.java)
-            dashboardActivityIntent.putExtra(UID, auth.uid)
-            startActivity(dashboardActivityIntent)
+            startActivity(Intent(this@MainActivity, DashboardActivity::class.java))
         }
         else {
             startActivity(Intent(this@MainActivity, RegisterActivity::class.java))
         }
-
-
-
-
-
-
-
+        finish()
     }
 
     companion object {
         val TAG = "TAG"
-        val UID = "com.example.kindwords.uid"
-
     }
 
 }

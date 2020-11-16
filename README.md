@@ -6,6 +6,42 @@ Name: Justin Mullins Group Number: 21 Project Name: Kind Words
 Name: Anjali Sharma Group Number: 21 Project Name: Kind Words  
 Name: Tsewang Thilly Group Number: 21 Project Name: Kind Words  
 
+## TODO
+* CreatePosTActivity
+* CreateReplyActivity
+
+## Bugs 
+
+## Testing Objectives 
+
+## To Be Implemented
+* Functionality: 
+	* Create post
+	* create Reply
+	* user's replies (sortable)
+	* user's messages (sortable)
+	* delete account
+	* credits
+	* database post and retrieve data
+	* account report
+	* reply report 
+	* account deletion 
+* UI: 
+	* user's messages (multi-view) 
+	* user's replies (multi-view)
+	* user's messages (single-view)
+	* user's replies (single-view)
+	* account deletion warning
+	* post report
+	* reply report 
+
+## Completed 
+* Functionality: Login, register, database authentication, sign out
+* UI : dashboard, create reply, create post, login, register 
+* UI (toolbar): dashboard, user's messages, user's replies, sign out 
+
+
+
 ## Planning 
 * Project description 
 	* With the Quarantine, people are feeling down. Write an app that lets people write letters anonymously and let other users respond with positivity and encouragement

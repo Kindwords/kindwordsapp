@@ -6,25 +6,27 @@ import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
-class CreatePostActivity: AppCompatActivity() {
-    private lateinit var mPost : Post
+class CreateReplyActivity: AppCompatActivity() {
+    private lateinit var mReply: Reply
+    private lateinit var postAuthor: String
     private lateinit var subjectView: TextView
     private lateinit var bodyView: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_create_post)
-        setSupportActionBar(findViewById(R.id.toolbar_dashboard))
-        supportActionBar?.title = "Create A New Post"
+        setContentView(R.layout.activity_create_reply)
+        setSupportActionBar(findViewById(R.id.toolbar_create_reply))
+        supportActionBar?.title = "Create A New Reply"
         //TODO: instantiate text views and button
         //
-        mPost = Post()
+        mReply = Reply()
+        postAuthor = intent.getStringExtra(POSTID).toString()
 
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.menu_new_message, menu)
+        menuInflater.inflate(R.menu.menu_title_only, menu)
         return true
     }
 
@@ -33,12 +35,12 @@ class CreatePostActivity: AppCompatActivity() {
     private fun validateFields(): Boolean {return true}
 
 
-    fun addPostToDatabase(view: View) {
+    fun addReplyToDatabase(view: View) {
         if (validateFields()) {
             //TODO
-            // create a new post object with the subject, and body as arguments
-            // use mPost to add the post to the database
-            // toast message saying post was successful
+            // create a new reply object with the subject, and body as arguments
+            // use the mReply function addReplyToDatabse(new reply object, postAuthor) to add the reply to the database
+            // toast message saying reply was successful
             finish()
         } else {
             //TODO
@@ -47,4 +49,8 @@ class CreatePostActivity: AppCompatActivity() {
 
     }
 
+    companion object {
+        val TAG = "TAG"
+        val POSTID = "com.example.kindwords.postID"
+    }
 }

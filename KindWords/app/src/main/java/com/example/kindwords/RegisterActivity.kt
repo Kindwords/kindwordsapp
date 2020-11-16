@@ -92,7 +92,7 @@ class RegisterActivity : AppCompatActivity() {
     //Toast.makeText(applicationContext, "Please enter a valid password!", Toast.LENGTH_LONG).show()
     //Toast.makeText(applicationContext, "Registration successful!", Toast.LENGTH_LONG).show()
     //                        progressBar!!.visibility = View.GONE
-    //TODO: toast message telling user password failed
+
     private fun emptyLoginField() {
         Toast.makeText(applicationContext, "Please enter a non-empty Username & Password!", Toast.LENGTH_LONG).show()
         return

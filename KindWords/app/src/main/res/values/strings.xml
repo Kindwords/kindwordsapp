@@ -39,5 +39,6 @@
     <string name="sign_out">Sign Out</string>
     <string name="delete_account">Delete Account</string>
     <string name="credits">Credits</string>
+    <string name="subject_hint">Subject</string>
 
 </resources>

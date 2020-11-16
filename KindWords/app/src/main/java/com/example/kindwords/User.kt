@@ -3,39 +3,33 @@ package com.example.kindwords
 import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.google.firebase.database.ServerValue.TIMESTAMP
 import java.util.*
 import javax.security.auth.Subject
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 
 
-class Post(
-    var postId: String = "",
-    var authorId: String = "",
-    var subject: String = "",
-    var message: String = "",
-    var day: String = "",
-    var time: String = "",
-    var viewCount: Int = 0,
-    var replyCount: Int = 0) {
+class Post(var subject: String = "", var message: String = "", ) {
+
+    var authorId = ""
+    var postId : String = ""
+    var viewCount: Int = 0
+    var replyCount: Int = 0
+    lateinit var time: Map<String, String>
     private var reference = FirebaseDatabase.getInstance().reference.child("posts")
 
-    // initialization
-    //--------------------------------------------------------------------------------------------
-    init {
-    }
-    //--------------------------------------------------------------------------------------------
-
-    // class attributes
-    //---------------------------------------------------------------------------------------------
-    @Exclude
-    fun addPostToDataBase(){
-        postId = (reference.push()).key.toString()
-        reference.child(postId).setValue(this)}
+    init { authorId = FirebaseAuth.getInstance().uid.toString() }
 
     @Exclude
-    fun deletePostFromDatabase() {
-        reference.child(postId).removeValue()
+    fun addPostToDataBase(post: Post){
+        post.time = ServerValue.TIMESTAMP
+        post.postId = (reference.push()).key.toString()
+        post.reference.child(post.postId).setValue(post)}
+
+    @Exclude
+    fun deletePostFromDatabase(post: Post) {
+        post.reference.child(post.postId).removeValue()
     }
 
     @Exclude
@@ -43,27 +37,37 @@ class Post(
     @Exclude
     fun getMyPosts(){}
     //---------------------------------------------------------------------------------------------
-
-
-
 }
 
+class Reply(var subject: String = "", var message: String = "", ) {
 
-class Reply(uid: String = ""){
-    // private attributes
-    private var auth: FirebaseAuth = FirebaseAuth.getInstance()
-    private var dReference: DatabaseReference =
-        FirebaseDatabase.getInstance().reference.child("replies").child(uid)
-    private var replyId = uid
-
-    // database attributes
-    // var date:
+    var authorId = ""
+    var receipientId = ""
+    var replyId : String = ""
+    var rating: Int = 0
     var seenStatus: Boolean = false
+    lateinit var time: Map<String, String>
+    private var reference = FirebaseDatabase.getInstance().reference.child("replies")
 
-    init { //no need for listeners as contents of replies cant be modified
-    }
+    init { authorId = FirebaseAuth.getInstance().uid.toString() }
 
     @Exclude
-    fun addReply(){}
+    fun addReplyToDataBase(reply: Reply, post: Post){
+        reply.time = ServerValue.TIMESTAMP
+        reply.receipientId = post.postId
+        reply.replyId = (reference.push()).key.toString()
+        reply.reference.child(reply.replyId).setValue(reply)}
 
+    @Exclude
+    fun deleteReplyFromDatabase(reply: Reply) {
+        reply.reference.child(reply.replyId).removeValue()
+    }
+
+
+    @Exclude
+    fun getMyReplies(){}
+    //---------------------------------------------------------------------------------------------
 }
+
+
+

@@ -14,7 +14,7 @@ import android.widget.TextView
 class MainActivity : AppCompatActivity() {
 
 
-    var already_registered = false
+    private var already_registered = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
