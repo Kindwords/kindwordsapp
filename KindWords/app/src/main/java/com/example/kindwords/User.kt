@@ -52,9 +52,9 @@ class Reply(var subject: String = "", var message: String = "", ) {
     init { authorId = FirebaseAuth.getInstance().uid.toString() }
 
     @Exclude
-    fun addReplyToDataBase(reply: Reply, post: Post){
+    fun addReplyToDataBase(reply: Reply, postId: String){
         reply.time = ServerValue.TIMESTAMP
-        reply.receipientId = post.postId
+        reply.receipientId = postId
         reply.replyId = (reference.push()).key.toString()
         reply.reference.child(reply.replyId).setValue(reply)}
 

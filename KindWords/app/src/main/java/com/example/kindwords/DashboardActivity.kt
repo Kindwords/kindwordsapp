@@ -25,7 +25,7 @@ class DashboardActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
         setSupportActionBar(findViewById(R.id.toolbar_dashboard))
-        supportActionBar?.title = "DashBoard"
+        supportActionBar?.title = "Dashboard"
         mPost = Post()
         mReply = Reply()
 
