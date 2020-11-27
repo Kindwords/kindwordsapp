@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
         // if user is signed in, skip sign in process
         // else let them sign in
         if (auth.currentUser != null) { // user is signed in
-            startActivity(Intent(this@MainActivity, DashboardActivity::class.java))
+            startActivity(Intent(this@MainActivity, HomeActivity::class.java))
         }
         else {
             startActivity(Intent(this@MainActivity, RegisterActivity::class.java))

@@ -10,7 +10,6 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var emailTextView: TextView
@@ -73,7 +72,7 @@ class RegisterActivity : AppCompatActivity() {
             .addOnCompleteListener{task ->
                 if (task.isSuccessful) {
                     Log.i(LoginActivity.TAG, "signIn successful")
-                    val intent = Intent(this@RegisterActivity, DashboardActivity::class.java )
+                    val intent = Intent(this@RegisterActivity, HomeActivity::class.java )
                     intent.putExtra(UID, auth.uid)
                     startActivity(intent)
                 }

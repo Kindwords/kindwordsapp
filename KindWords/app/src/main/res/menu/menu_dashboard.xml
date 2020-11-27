@@ -12,7 +12,7 @@
         app:showAsAction="always"
         android:title="" />
     <item
-    android:id="@+id/messages"
+    android:id="@+id/posts"
     android:icon="@drawable/messages_read"
     app:showAsAction="always"
     android:title="" />
@@ -31,16 +31,7 @@
         android:onClick="signOut"
         app:showAsAction="never" />
 
-    <item
-        android:id="@+id/delete_account_action"
-        android:orderInCategory="100"
-        android:title="@string/delete_account"
-        app:showAsAction="never" />
-    <item
-    android:id="@+id/dashboard_credit_action"
-    android:orderInCategory="100"
-    android:title="@string/credits"
-    app:showAsAction="never" />
+
 
 
 </menu>

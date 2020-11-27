@@ -41,7 +41,7 @@ class LoginActivity : AppCompatActivity() {
             Log.i(TAG, "attempting to log user in")
             auth.signInWithEmailAndPassword(user, pass).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    val intent = Intent(this@LoginActivity, DashboardActivity::class.java)
+                    val intent = Intent(this@LoginActivity, HomeActivity::class.java)
                     startActivity(intent)
                 } else wrongPass()
             }
