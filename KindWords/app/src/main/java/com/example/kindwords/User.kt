@@ -1,0 +1,222 @@
+package com.example.kindwords
+
+import androidx.lifecycle.MutableLiveData
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
+import java.io.Serializable
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.HashMap
+
+class MyPosts(MyPostsAdapter: MyPostsAdapter) {
+    private val uid: String? = FirebaseAuth.getInstance().uid
+    private var childEventListener: ChildEventListener? = null
+    private var reference: DatabaseReference = FirebaseDatabase.getInstance().reference
+        .child("posts")
+
+    init {
+        childEventListener = reference.addChildEventListener(object: ChildEventListener {
+            override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
+                val data = snapshot.value as HashMap<*, *>
+                    val newPost = Post()
+                    newPost.authorId = data["authorId"] as String
+                    newPost.subject = data["subject"] as String
+                    newPost.message = data["message"] as String
+                    newPost.postId = data["postId"] as String
+                    newPost.replyCount = (data["replyCount"] as Long).toInt()
+                    newPost.viewCount = (data["viewCount"] as Long).toInt()
+                    newPost.time = data["time"] as String
+                    MyPostsAdapter.add(newPost)
+            }
+
+            override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
+            }
+
+            override fun onChildRemoved(snapshot: DataSnapshot) {
+
+            }
+
+            override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {}
+
+            override fun onCancelled(error: DatabaseError) {}
+        })
+    }
+
+    fun unregisterListener() { childEventListener?.let{reference.removeEventListener(it)} }
+
+}
+class Replies (MyRepliesAdapter: MyRepliesAdapter){
+    private val uid: String? = FirebaseAuth.getInstance().uid
+    private var childEventListener: ChildEventListener? = null
+    private var reference: DatabaseReference = FirebaseDatabase.getInstance().reference
+        .child("replies")
+
+    init {
+        childEventListener =
+        reference.addChildEventListener(object: ChildEventListener {
+            override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
+                val data = snapshot.value as HashMap<*, *>
+                    val newReply = Reply()
+                    newReply.authorId = data["authorId"] as String
+                    newReply.recipientId = data["recipientId"] as String
+                    newReply.subject = data["subject"] as String
+                    newReply.message = data["message"] as String
+                    newReply.replyId = data["replyId"] as String
+                    newReply.rating = (data["rating"] as Long).toInt()
+                    newReply.seenStatus = data["seenStatus"] as Boolean
+                    newReply.time = data["time"] as String
+                    MyRepliesAdapter.add(newReply)
+            }
+
+            override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
+            }
+
+            override fun onChildRemoved(snapshot: DataSnapshot) {}
+
+            override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {}
+
+            override fun onCancelled(error: DatabaseError) {}
+        })
+    }
+
+    fun unregisterListener() {childEventListener?.let{reference.removeEventListener(it)}}
+}
+
+class RecentPost {
+    private var posts: Queue<Post>? = LinkedList()
+    var initComplete = MutableLiveData<Boolean>()
+    private val uid: String? = FirebaseAuth.getInstance().uid
+    private var reference: DatabaseReference = FirebaseDatabase.getInstance().reference
+        .child("posts")
+
+    init {
+        initComplete.value = false
+        reference.orderByChild("viewCount").addChildEventListener(object: ChildEventListener {
+                override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
+                    val data = snapshot.value as HashMap<*, *>
+                    if (data["authorId"] != uid) {
+                        val newPost = Post()
+                        newPost.authorId = data["authorId"] as String
+                        newPost.subject = data["subject"] as String
+                        newPost.message = data["message"] as String
+                        newPost.postId = data["postId"] as String
+                        newPost.replyCount = (data["replyCount"] as Long).toInt()
+                        newPost.viewCount = (data["viewCount"] as Long).toInt()
+                        newPost.time = data["time"] as String
+                        (posts as LinkedList<Post>).add(newPost)
+                        if (!initComplete.value!!) initComplete.value = true
+                    }
+
+                }
+
+                override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
+                    val data = snapshot.value as HashMap<*, *>
+                    val newPost = Post()
+                    if (data["authorId"] != uid) {
+                        newPost.authorId = data["authorId"] as String
+                        newPost.subject = data["subject"] as String
+                        newPost.message = data["message"] as String
+                        newPost.postId = data["postId"] as String
+                        newPost.replyCount = (data["replyCount"] as Long).toInt()
+                        newPost.viewCount = (data["viewCount"] as Long).toInt()
+                        newPost.time = data["time"] as String
+                        (posts as LinkedList<Post>).add(newPost)
+                    }
+                }
+
+                override fun onChildRemoved(snapshot: DataSnapshot) {}
+
+                override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {}
+
+                override fun onCancelled(error: DatabaseError) {}
+            })
+    }
+
+    fun getRecentPost(): Post? {
+        return if (posts?.size == 0) null
+        else posts?.remove()
+    }
+}
+
+class Post(var subject: String = "", var message: String = "" ): Serializable {
+
+    var authorId = FirebaseAuth.getInstance().uid.toString()
+    var postId : String = ""
+    var viewCount: Int = 0
+    var replyCount: Int = 0
+    var time: String = ""
+    private var reference = FirebaseDatabase.getInstance().reference.child("posts")
+
+    private fun Date.toString(format: String, locale: Locale = Locale.getDefault()): String {
+        val formatter = SimpleDateFormat(format, locale)
+        return formatter.format(this)
+    }
+
+    private fun getCurrentDateTime(): Date {
+        return Calendar.getInstance().time
+    }
+
+    @Exclude
+    fun addPostToDataBase() {
+        if (postId == "") {
+            val date = getCurrentDateTime()
+            time = date.toString("yyyy/MM/dd HH:mm:ss")
+            postId = (reference.push()).key.toString()
+            reference.child(postId).setValue(this)
+        }
+    }
+
+    @Exclude
+    fun update() {
+        reference.child(postId).setValue(this) }
+
+    @Exclude
+    fun deletePostFromDatabase(post: Post) {
+        //todo subsequently delete all replies with this post as recipient
+        reference.child(post.postId).removeValue() }
+
+}
+
+class Reply(var subject: String = "", var message: String = ""): Serializable {
+
+    var authorId = FirebaseAuth.getInstance().uid.toString()
+    var recipientId = ""
+    var replyId : String = ""
+    var rating: Int = 0
+    var seenStatus: Boolean = false
+    lateinit var time: String
+    private var reference = FirebaseDatabase.getInstance().reference.child("replies")
+    private fun Date.toString(format: String, locale: Locale = Locale.getDefault()): String {
+        val formatter = SimpleDateFormat(format, locale)
+        return formatter.format(this)
+    }
+
+    private fun getCurrentDateTime(): Date {
+        return Calendar.getInstance().time
+    }
+
+    @Exclude
+    fun addReplyToDataBase(){
+        if (replyId == "") {
+            val date = getCurrentDateTime()
+            time = date.toString("yyyy/MM/dd HH:mm:ss")
+            replyId = (reference.push()).key.toString()
+            reference.child(replyId).setValue(this)
+        }
+    }
+
+    @Exclude
+    fun deleteReplyFromDatabase(reply: Reply) {
+        reply.reference.child(reply.replyId).removeValue()
+    }
+
+    @Exclude
+    fun updateReplyAtDatabase() {
+        reference.child(replyId).setValue(this)
+    }
+
+    //---------------------------------------------------------------------------------------------
+}
+
+
+

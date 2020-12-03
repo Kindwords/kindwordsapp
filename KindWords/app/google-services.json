@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "209977485073",
+    "firebase_url": "https://kind-words-422e3.firebaseio.com",
+    "project_id": "kind-words-422e3",
+    "storage_bucket": "kind-words-422e3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:209977485073:android:67a4f6c852e15b49d58eb0",
+        "android_client_info": {
+          "package_name": "com.example.kindwords"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "209977485073-hdmk3dhioglbsbuv71e23gkg0gr6iqd7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.kindwords",
+            "certificate_hash": "992c48a54546468c49ea5c68bb1edb29451ce8d6"
+          }
+        },
+        {
+          "client_id": "209977485073-c6ft3g1ufr70t08000p36r2aii1son3n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhKozGWKUPTQS-xyXzEdIEOPPc3GvHK_k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "209977485073-c6ft3g1ufr70t08000p36r2aii1son3n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
