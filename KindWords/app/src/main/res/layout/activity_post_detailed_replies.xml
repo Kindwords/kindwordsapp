@@ -3,7 +3,19 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".PostDetailedActivity"
+    android:background="@color/light_black">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#B9EFEDED"
+        android:orientation="vertical"
+        android:weightSum="10">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar_dashboard"
@@ -17,16 +29,13 @@
             app:layout_constraintWidth_percent="1"
             app:popupTheme="@style/AppTheme.PopupOverlay"/>
 
-    <ListView
-        android:id="@+id/list_view"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="10"
-        android:background="#B9EFEDED"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar_dashboard" />
 
 
+        <ListView
+            android:id="@+id/post_detailed_list_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="10" />
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

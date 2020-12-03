@@ -7,10 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
+import java.io.Serializable
 import kotlin.collections.ArrayList
 
 class MyRepliesAdapter(mContext: Context, recipientFilter: String? = null,
-                       authorFilter: String? = null) : BaseAdapter() {
+                       authorFilter: String? = null) : BaseAdapter(), Serializable{
 
     private var list = ArrayList<Reply>()
     private var mRecipientFilter: String? = recipientFilter

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".LettersActivity"
+    >
+
+    <LinearLayout
+        android:id="@+id/main_linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#B9EFEDED"
+        android:orientation="vertical"
+        android:weightSum="20"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <ImageView
+            android:id="@+id/profile"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:alpha="0.5"
+            android:contentDescription="@string/profile_img_button"
+            android:onClick="go_to_profile"
+            android:padding="15dp"
+            app:srcCompat="@drawable/profile_link" />
+
+
+        <ScrollView
+            android:id="@+id/story_scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="10dp"
+            android:layout_weight="15"
+            android:background="@drawable/rounder_items"
+            android:hapticFeedbackEnabled="false"
+            android:padding="20dp">
+
+            <TextView
+                android:id="@+id/story"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffff"
+                android:gravity="center"
+                android:text="@string/story_str"
+                android:textColor="#393838"
+                android:textSize="18sp" />
+
+        </ScrollView>
+
+        <View
+            android:id="@+id/view5"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="5" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/pray"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginBottom="20dp"
+        android:contentDescription="@string/profile_img_button"
+        android:padding="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/main_linearLayout"
+        app:layout_constraintStart_toStartOf="@+id/main_linearLayout"
+        app:srcCompat="@drawable/pray3"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="pray"/>
+
+    <ImageView
+        android:id="@+id/write_advice"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="20dp"
+        android:contentDescription="@string/profile_img_button"
+        android:padding="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/main_linearLayout"
+        app:layout_constraintEnd_toEndOf="@+id/main_linearLayout"
+        app:srcCompat="@drawable/write_adive"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="write_advice"/>
+
+    <ImageView
+        android:id="@+id/write_letter"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="30dp"
+        android:contentDescription="@string/profile_img_button"
+        android:padding="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/main_linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/add_letter"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="need_Advice"/>
+
+    <ImageView
+        android:id="@+id/write_advice_sticker"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:contentDescription="@string/img_str"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/write_advice_sticker" />
+
+    <ImageView
+        android:id="@+id/pray_sticker"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:contentDescription="@string/img_str"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/pray_sticker" />
+
+    <ImageView
+        android:id="@+id/write_letter2"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:clickable="true"
+        android:contentDescription="@string/profile_img_button"
+        android:focusable="true"
+        android:onClick="read_Post"
+        android:padding="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/main_linearLayout"
+        app:srcCompat="@drawable/letter"
+        app:tintMode="src_atop"
+        android:alpha="0.9"/>
+
+    <ImageView
+        android:id="@+id/advice"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:contentDescription="@string/advice_link_button"
+        android:padding="15dp"
+        app:layout_constraintEnd_toEndOf="@+id/main_linearLayout"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/advice_link"
+        android:alpha="0.5"
+        android:onClick="go_to_advice_list"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

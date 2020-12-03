@@ -4,82 +4,78 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="120dp"
-    android:background="#FFFFFF">
+    android:background="#B9EFEDED"
+    android:id="@+id/item_view">
 
-    <View
-        android:id= "@+id/item_view"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent" />
 
     <TextView
         android:id="@+id/subject_label"
-        android:layout_width="61dp"
-        android:layout_height="27dp"
-        android:gravity="center"
-        android:text="subject"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="start"
+        android:text="subject:"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="#000000"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/subject_text"
-        app:layout_constraintHorizontal_bias="0.153"
+        app:layout_constraintEnd_toEndOf="@+id/subject_text"
+        app:layout_constraintHeight_percent="0.3"
+        app:layout_constraintHorizontal_bias="0.03"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.322" />
+        app:layout_constraintVertical_bias="0.322"
+        app:layout_constraintWidth_percent="0.2" />
 
     <TextView
         android:id="@+id/date_text"
-        android:layout_width="308dp"
-        android:layout_height="32dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="10dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:background="@drawable/rounder_items"
-        android:gravity="center|start"
-        android:paddingStart="15dp"
-        android:paddingTop="0dp"
-        android:paddingEnd="0dp"
-        android:paddingBottom="0dp"
-        android:textColor="#334913"
+        android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/subject_text"
-        app:layout_constraintVertical_bias="0.714" />
+        app:layout_constraintHeight_percent="0.3"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.85"
+        app:layout_constraintWidth_percent="0.73" />
 
     <TextView
         android:id="@+id/date_label"
-        android:layout_width="61dp"
-        android:layout_height="27dp"
-        android:gravity="center"
-        android:text="Date"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="start"
+        android:text="Date:"
+        android:textSize="20sp"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/date_text"
-        app:layout_constraintHorizontal_bias="0.011"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.3"
+        app:layout_constraintHorizontal_bias="0.03"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/subject_label"
-        app:layout_constraintVertical_bias="0.555" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.85"
+        app:layout_constraintWidth_percent="0.2" />
 
     <TextView
         android:id="@+id/subject_text"
-        android:layout_width="308dp"
-        android:layout_height="32dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="10dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:background="@drawable/rounder_items"
-        android:gravity="center|start"
-        android:paddingStart="15dp"
-        android:paddingTop="0dp"
-        android:paddingEnd="0dp"
-        android:paddingBottom="0dp"
-
-        android:textColor="#334913"
+        android:gravity="start|center"
+        android:textColor="#000000"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/date_text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.32" />
+        app:layout_constraintVertical_bias="0.322"
+        app:layout_constraintWidth_percent="0.73"
+        app:layout_constraintHeight_percent="0.3"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

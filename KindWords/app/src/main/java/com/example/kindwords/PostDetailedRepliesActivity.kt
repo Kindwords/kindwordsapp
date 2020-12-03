@@ -6,50 +6,42 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import android.widget.Button
 import android.widget.ListView
 import android.widget.TextView
-import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 
-class PostDetailedActivity : AppCompatActivity() {
-    lateinit var postId: String
-    private lateinit var textView: TextView
-    lateinit var listView: ListView
-    lateinit var myRepliesAdapter: MyRepliesAdapter
+class PostDetailedRepliesActivity : AppCompatActivity() {
+    private lateinit var listView: ListView
+    private lateinit var myRepliesAdapter: MyRepliesAdapter
     lateinit var replies: Replies
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_post_detailed)
-        textView = findViewById(R.id.post_detailed_textView)
+        setContentView(R.layout.activity_post_detailed_replies)
         setSupportActionBar(findViewById(R.id.toolbar_dashboard))
-        supportActionBar?.title = "My Letter"
+        supportActionBar?.title = "Replies"
 
-        val subject = intent.getStringExtra("subject")
-        val message = intent.getStringExtra("message")
-        postId = intent.getStringExtra("postId") as String
 
-        // set subject and date
-        textView.text = subject + "\n\n" + message
+        val postId = intent.getStringExtra("postId")
 
-    }
+        // check to see if the post/letter has any replies
+        listView = findViewById(R.id.post_detailed_list_view)
+        myRepliesAdapter = MyRepliesAdapter(applicationContext, recipientFilter = postId)
+        replies = Replies(myRepliesAdapter)
+        listView.adapter = myRepliesAdapter
 
-    fun viewReplies(view: View) {
-            val intent = Intent(this@PostDetailedActivity, PostDetailedRepliesActivity::class.java)
-            intent.putExtra("postId", postId)
-            startActivity(intent)
-
+        
     }
 
     override fun onDestroy() {
+        replies.unregisterListener()
         super.onDestroy()
     }
 
     override fun onBackPressed() {
         super.onBackPressed()
+        replies.unregisterListener()
         finish()
     }
 
@@ -73,23 +65,25 @@ class PostDetailedActivity : AppCompatActivity() {
     }
     // display more information pop up message
     fun signOut(menuItem: MenuItem) {
+        replies.unregisterListener()
         FirebaseAuth.getInstance().signOut()
         startActivity(Intent(this, LoginActivity::class.java))
+        finish()
     }
 
     private fun goToReplies() {
-        startActivity(Intent(this@PostDetailedActivity, MyRepliesActivity::class.java))
+        startActivity(Intent(this@PostDetailedRepliesActivity, MyRepliesActivity::class.java))
         replies.unregisterListener()
         finish()
     }
     private fun goToHome(){
-        startActivity(Intent(this@PostDetailedActivity, HomeActivity::class.java))
+        startActivity(Intent(this@PostDetailedRepliesActivity, HomeActivity::class.java))
         replies.unregisterListener()
         finish()
 
     }
     private fun goToMessages(){
-        startActivity(Intent(this@PostDetailedActivity, MyPostsActivity::class.java))
+        startActivity(Intent(this@PostDetailedRepliesActivity, MyPostsActivity::class.java))
         replies.unregisterListener()
         finish()
 
