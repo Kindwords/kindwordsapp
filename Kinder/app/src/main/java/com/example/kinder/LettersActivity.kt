@@ -77,8 +77,8 @@ class LettersActivity : AppCompatActivity() {
     fun pray(view: View) {
 
         story_text_view.startAnimation(fade);
-        //pray_sticker.alpha = 1F
-        //pray_sticker.startAnimation(hand_fade)
+        pray_sticker.alpha = 1F
+        pray_sticker.startAnimation(hand_fade)
 
     }
 
