@@ -1,11 +1,10 @@
-package com.example.kinder
+package com.example.kindwords
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.*
-import androidx.appcompat.app.ActionBar
 import com.google.firebase.auth.FirebaseAuth
 
 class MyPostsActivity : AppCompatActivity() {

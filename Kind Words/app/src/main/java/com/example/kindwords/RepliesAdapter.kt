@@ -1,4 +1,4 @@
-package com.example.kinder
+package com.example.kindwords
 
 import android.annotation.SuppressLint
 import android.content.Context

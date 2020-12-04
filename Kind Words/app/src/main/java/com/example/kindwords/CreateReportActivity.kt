@@ -1,4 +1,4 @@
-package com.example.kinder
+package com.example.kindwords
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

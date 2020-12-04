@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.kinder">
+    package="com.example.kindwords">
 
     <application
         android:allowBackup="true"
@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"
+        <activity android:name="com.example.kindwords.MainActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,49 +18,49 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".LoginActivity"
+        <activity android:name="com.example.kindwords.LoginActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
         </activity>
 
-        <activity android:name=".CreatePostActivity"
+        <activity android:name="com.example.kindwords.CreatePostActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
         </activity>
 
-        <activity android:name=".CreateReportActivity"
+        <activity android:name="com.example.kindwords.CreateReportActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
         </activity>
 
-        <activity android:name=".MyRepliesActivity"
+        <activity android:name="com.example.kindwords.MyRepliesActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
         </activity>
 
-        <activity android:name=".RegisterActivity"
+        <activity android:name="com.example.kindwords.RegisterActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
         </activity>
 
-        <activity android:name=".HomeActivity"
+        <activity android:name="com.example.kindwords.HomeActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
         </activity>
 
-        <activity android:name=".CreateReplyActivity"
+        <activity android:name="com.example.kindwords.CreateReplyActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
         </activity>
 
 
-        <activity android:name=".ReplyDetailedActivity"
+        <activity android:name="com.example.kindwords.ReplyDetailedActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         </activity>
-        <activity android:name=".PostDetailedActivity"
+        <activity android:name="com.example.kindwords.PostDetailedActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         </activity>
-        <activity android:name=".MyPostsActivity"
+        <activity android:name="com.example.kindwords.MyPostsActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         </activity>
 

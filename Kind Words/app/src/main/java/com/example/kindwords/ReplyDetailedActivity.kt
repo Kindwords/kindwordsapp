@@ -1,4 +1,4 @@
-package com.example.kinder
+package com.example.kindwords
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.ListView
 import android.widget.RatingBar
 import android.widget.TextView
 import androidx.lifecycle.Observer

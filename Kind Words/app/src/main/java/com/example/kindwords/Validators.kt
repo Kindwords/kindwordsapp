@@ -1,4 +1,4 @@
-package com.example.kinder
+package com.example.kindwords
 
 class Validators {
     fun validEmail(email: String?) : Boolean {

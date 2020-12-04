@@ -8,44 +8,7 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:988441925618:android:bd8a03efaf80a5f9aefd6b",
-        "android_client_info": {
-          "package_name": "com.example.kinder"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "988441925618-lqaked9e0kgbtb62ugigt6731eq0e2fp.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.kinder",
-            "certificate_hash": "992c48a54546468c49ea5c68bb1edb29451ce8d6"
-          }
-        },
-        {
-          "client_id": "988441925618-sr6hp1sl6bhlejq3pe0gfdv26h6jhje4.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDjjkynjXrlM-xATJcMGNeadKlJQkHzExU"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "988441925618-sr6hp1sl6bhlejq3pe0gfdv26h6jhje4.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:988441925618:android:39ad7878663315c2aefd6b",
+        "mobilesdk_app_id": "1:988441925618:android:b48568651236d3e0aefd6b",
         "android_client_info": {
           "package_name": "com.example.kindwords"
         }
