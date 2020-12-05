@@ -9,8 +9,8 @@ import com.google.firebase.auth.FirebaseAuth
 
 class MyRepliesActivity : AppCompatActivity() {
     private lateinit var listView: ListView
-    lateinit var myReplies: Replies
-    lateinit var myRepliesAdapter: RepliesAdapter
+    private lateinit var myReplies: Replies
+    private lateinit var myRepliesAdapter: RepliesAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,6 +18,8 @@ class MyRepliesActivity : AppCompatActivity() {
         actionBar?.hide()
 
         listView = findViewById<ListView>(R.id.list_view)
+
+
 
 
     }

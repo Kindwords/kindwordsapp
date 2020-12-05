@@ -1,10 +1,15 @@
 package com.example.kindwords
 
+import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Layout
 import android.view.View
 import android.widget.*
+import androidx.appcompat.app.AlertDialog
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.get
 import com.google.firebase.auth.FirebaseAuth
 
 class MyPostsActivity : AppCompatActivity() {
@@ -21,7 +26,10 @@ class MyPostsActivity : AppCompatActivity() {
 
         listView = findViewById<ListView>(R.id.list_view)
 
+
     }
+
+
 
     override fun onPause() {
         myPosts.unregisterListener()

@@ -4,13 +4,16 @@ import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import com.google.firebase.auth.FirebaseAuth
 
@@ -24,34 +27,63 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var writeAdviceSticker:ImageView
     private var currentPost: Post? = null
     private lateinit var recentPost: RecentPost
+    private lateinit var repliesBadgeObject: Replies
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         actionBar?.hide()
-
         storyTextView = findViewById<TextView>(R.id.story)
         setUpAnimation()
         initializePostDownloader()
-
     }
 
+    override fun onResume() {
+        setUpBadgeNotificationListener()
+        super.onResume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        repliesBadgeObject.unregisterListener()
+    }
+
+
+
+    private fun setUpBadgeNotificationListener(){
+        val repliesBadge = findViewById<TextView>(R.id.reply_badge)
+        val listenerAdapter = RepliesAdapter(applicationContext,
+            recipientAuthorFilter = FirebaseAuth.getInstance().uid, seenStatusFilter = false)
+        repliesBadgeObject = Replies(listenerAdapter)
+        listenerAdapter.replyCountData.observe(this, Observer { count ->
+            Log.i("Badge Count", count.toString())
+            repliesBadge.text = count.toString()
+        })
+
+    }
 
     private fun initializePostDownloader() {
         // initialize posts downloader
         recentPost = RecentPost()
         // Observe for when the first post is downloaded
-        recentPost.initComplete.observe(this, Observer{ _ -> updateView() })
+        recentPost.initComplete.observe(this, Observer{ res ->
+            if(res == true) {
+                updateView()
+                recentPost.initComplete.removeObservers(this)
+            } })
     }
 
     private fun updateView() {
         recentPost.getRecentPost()?.let {
+            // hide reload post button
+            findViewById<Button>(R.id.reload_posts).visibility = View.GONE
             currentPost = it
             val story = it.subject + "\n\n" + it.message
             storyTextView.text = story
-            it.viewCount += 1
-            it.update()
-        }
+
+        } ?: run {
+            findViewById<Button>(R.id.reload_posts).visibility = View.VISIBLE
+            storyTextView.text = "\n\n\n\n\n\n\n\n\n No New Letters Available At The Moment"}
     }
 
     private fun setUpAnimation() {
@@ -86,7 +118,7 @@ class HomeActivity : AppCompatActivity() {
 
             override fun onAnimationEnd(animation: Animation?) {
 
-                updateView()
+                updateView() // update the view when the animation ends
 
             }
 
@@ -95,9 +127,17 @@ class HomeActivity : AppCompatActivity() {
         })
     }
     fun nextLetter(view: View) {
+        currentPost?.let {
+            it.viewCount += 1
+            it.update() // update post at the database. I.E increase its seen count
+        }
         storyTextView.startAnimation(fade);
         praySticker.alpha = 1F
         praySticker.startAnimation(handFade)
+    }
+
+    fun reloadLetters(view: View) {
+        initializePostDownloader()
     }
 
     //writing a letter

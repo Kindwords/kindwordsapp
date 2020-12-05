@@ -2,24 +2,28 @@ package com.example.kindwords
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.MutableLiveData
 import kotlin.collections.ArrayList
 
-class PostsAdapter(mContext: Context, uidFilter: String? = null,
-                   postFilter: String? = null) : BaseAdapter() {
+class PostsAdapter(val mContext: Context, uidFilter: String? = null,
+                   postFilter: String? = null) : BaseAdapter(){
 
      private var postList = ArrayList<Post>()
     var postCountData = MutableLiveData<Int>()
-    init{postCountData.value = postList.size }
+
     private var mUidFilter: String? = uidFilter
     private var mPostIdFilter = postFilter
 
+    init{postCountData.value = postList.size }
     override fun getCount(): Int {
         return postList.size as Int
     }
@@ -59,11 +63,10 @@ class PostsAdapter(mContext: Context, uidFilter: String? = null,
 
         //todo on long click, delete the post and associated replies (delete replies first)
         holder.textView?.setOnLongClickListener{
-            true
-        }
-
+        true}
         return newView
     }
+
 
     internal class ViewHolder {
         var textView: TextView? = null

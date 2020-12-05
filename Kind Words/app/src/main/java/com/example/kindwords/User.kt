@@ -1,5 +1,6 @@
 package com.example.kindwords
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseAuth
@@ -32,6 +33,7 @@ class MyPosts(PostsAdapter: PostsAdapter) {
             }
 
             override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
+
             }
 
             override fun onChildRemoved(snapshot: DataSnapshot) {
@@ -55,7 +57,7 @@ class Replies (RepliesAdapter: RepliesAdapter){
 
     init {
         childEventListener =
-        reference.addChildEventListener(object: ChildEventListener {
+        reference.orderByChild("seenStatus").addChildEventListener(object: ChildEventListener {
             override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
                 val data = snapshot.value as HashMap<*, *>
                     val newReply = Reply()
@@ -71,8 +73,8 @@ class Replies (RepliesAdapter: RepliesAdapter){
                     RepliesAdapter.add(newReply)
             }
 
-            override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
-            }
+            override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {}
+
 
             override fun onChildRemoved(snapshot: DataSnapshot) {}
 
@@ -83,6 +85,8 @@ class Replies (RepliesAdapter: RepliesAdapter){
     }
 
     fun unregisterListener() {childEventListener?.let{reference.removeEventListener(it)}}
+
+
 }
 
 class RecentPost {
@@ -113,18 +117,6 @@ class RecentPost {
                 }
 
                 override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
-                    val data = snapshot.value as HashMap<*, *>
-                    val newPost = Post()
-                    if (data["authorId"] != uid) {
-                        newPost.authorId = data["authorId"] as String
-                        newPost.subject = data["subject"] as String
-                        newPost.message = data["message"] as String
-                        newPost.postId = data["postId"] as String
-                        newPost.replyCount = (data["replyCount"] as Long).toInt()
-                        newPost.viewCount = (data["viewCount"] as Long).toInt()
-                        newPost.time = data["time"] as String
-                        (posts as LinkedList<Post>).add(newPost)
-                    }
                 }
 
                 override fun onChildRemoved(snapshot: DataSnapshot) {}
@@ -174,9 +166,20 @@ class Post(var subject: String = "", var message: String = "" ): Serializable {
         reference.child(postId).setValue(this) }
 
     @Exclude
-    fun deletePostFromDatabase(post: Post) {
+    fun postExist(postId: String): Boolean {
+        return reference.child(postId).key != null
+    }
+
+    @Exclude
+    fun deletePostFromDatabase(context: Context) {
         //todo subsequently delete all replies with this post as recipient
-        reference.child(post.postId).removeValue() }
+        val repliesAdapter = RepliesAdapter(context, recipientFilter = postId)
+        val replies = Replies(repliesAdapter)
+        for (index in 0 until repliesAdapter.count) {
+            val reply = repliesAdapter.getItem(index) as Reply
+            reply.deleteReplyFromDatabase()
+        }
+        reference.child(postId).removeValue() }
 
 }
 
@@ -210,8 +213,8 @@ class Reply(var subject: String = "", var message: String = ""): Serializable {
     }
 
     @Exclude
-    fun deleteReplyFromDatabase(reply: Reply) {
-        reply.reference.child(reply.replyId).removeValue()
+    fun deleteReplyFromDatabase() {
+        reference.child(replyId).removeValue()
     }
 
     @Exclude

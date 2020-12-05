@@ -104,7 +104,7 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun failedPasswordValidation() {
-        Toast.makeText(applicationContext, "Please enter a valid password!", Toast.LENGTH_LONG).show()
+        Toast.makeText(applicationContext, "Invalid password!. Must be at least 1 letter,  1 number, min 6 chars, max 8 chars", Toast.LENGTH_LONG).show()
         return
     }
     private fun loginFailed() {

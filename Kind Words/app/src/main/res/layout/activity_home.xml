@@ -20,6 +20,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
 
+
         <ImageView
             android:id="@+id/profile"
             android:layout_width="80dp"
@@ -29,7 +30,6 @@
             android:onClick="signOut"
             android:padding="15dp"
             app:srcCompat="@drawable/logout" />
-
 
         <ScrollView
             android:id="@+id/story_scroll_view"
@@ -47,13 +47,15 @@
                 android:layout_height="wrap_content"
                 android:background="#ffff"
                 android:gravity="center"
-                android:text="\n\n\n\n\n\n\n\n\n No Letters Available At The Moment"
+                android:text="\n\n\n\n\n\n\n\n\n No New Letters Available At The Moment"
                 android:textColor="#393838"
                 android:textSize="18sp" />
 
         </ScrollView>
 
+
         <LinearLayout
+            android:id="@+id/linearLayout4"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="5"
@@ -105,6 +107,8 @@
                 app:srcCompat="@drawable/report" />
         </LinearLayout>
 
+
+
     </LinearLayout>
 
     <ImageView
@@ -143,7 +147,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/main_linearLayout"
         app:srcCompat="@drawable/letter"
-        app:tintMode="src_atop" />
+        app:tintMode="src_atop"/>
 
     <ImageView
         android:id="@+id/advice"
@@ -155,7 +159,41 @@
         android:padding="15dp"
         app:layout_constraintEnd_toEndOf="@+id/main_linearLayout"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/advice_link" />
+        app:srcCompat="@drawable/advice_link"
+        />
+
+    <Button
+        android:id="@+id/reload_posts"
+        android:layout_width="129dp"
+        android:layout_height="35dp"
+        android:layout_weight="2"
+        android:background="@drawable/rounder_button"
+        android:onClick="reloadLetters"
+        android:text="Reload Letters"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/write_advice_sticker"
+        app:layout_constraintEnd_toEndOf="@+id/write_advice_sticker"
+        app:layout_constraintStart_toStartOf="@+id/write_advice_sticker"
+        app:layout_constraintTop_toTopOf="@+id/write_advice_sticker"
+        app:layout_constraintVertical_bias="0.71000004" />
+
+    <TextView
+        android:id="@+id/reply_badge"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_gravity="right|end|top"
+        android:background="@drawable/badge_background"
+        android:gravity="center"
+        android:padding="3dp"
+        android:text="0"
+        android:textColor="@android:color/white"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/advice"
+        app:layout_constraintEnd_toEndOf="@+id/advice"
+        app:layout_constraintHorizontal_bias="0.18"
+        app:layout_constraintStart_toStartOf="@+id/advice"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.29000002" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
