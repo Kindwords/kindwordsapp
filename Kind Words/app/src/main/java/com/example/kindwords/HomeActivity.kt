@@ -64,12 +64,11 @@ class HomeActivity : AppCompatActivity() {
 
     private fun initializePostDownloader() {
         // initialize posts downloader
-        recentPost = RecentPost()
         // Observe for when the first post is downloaded
+        recentPost = RecentPost()
         recentPost.initComplete.observe(this, Observer{ res ->
             if(res == true) {
                 updateView()
-                recentPost.initComplete.removeObservers(this)
             } })
     }
 
@@ -83,7 +82,11 @@ class HomeActivity : AppCompatActivity() {
 
         } ?: run {
             findViewById<Button>(R.id.reload_posts).visibility = View.VISIBLE
-            storyTextView.text = "\n\n\n\n\n\n\n\n\n No New Letters Available At The Moment"}
+            storyTextView.text = "\n\n\n\n\n\n\n\n\n No New Letters Available At The Moment"
+            recentPost.initComplete.value = false
+        }
+
+
     }
 
     private fun setUpAnimation() {
