@@ -7,32 +7,13 @@ Name: Anjali Sharma Group Number: 21 Project Name: Kind Words
 Name: Tsewang Thilly Group Number: 21 Project Name: Kind Words  
 
 
-
+## Project Complete as of 12/6/2020
 
 
 ## Planning 
 * Project description 
 	* With the Quarantine, people are feeling down. Write an app that lets people write letters anonymously and let other users respond with positivity and encouragement
 	* To keep the good vibes, make sure you incorporate a punishment system for those that just want to bring others down.
-	
-* Roles 
-	* UI Design Programmer
-		* Everything UI related (xml files, icons, fonts, etc)
-		* Testing
-	* Kotlin Programmer 
-		* Handles client - app interactions
-		* Handles app - database interactions 
-		* Testing 
-	* Project Manager 
-		* Directs general flow of development 
-		* Develops program skeletons and TODO directions for other contributors 
-		* Testing 
-
-* Currently Allocated roles 
-	* Brian : Project Manager, Kotlin programmer 
-	* Anjali : Kotlin programmer 
-	* Justin : Kotlin programmer 
-	* Thilly : UI Design Programmer 
 
 * Features 
 	* Publicly post anonymous cards (letters) than can be replied to by other users of the app 
