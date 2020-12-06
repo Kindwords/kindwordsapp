@@ -1,5 +1,6 @@
 package com.example.kindwords
 
+import android.annotation.SuppressLint
 import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -13,11 +14,17 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import com.google.firebase.auth.FirebaseAuth
 
-
+/*
+    This activity class is the central board of the app. This is where a client;
+     accesses all other related menu items
+     views letters posted by other clients
+     creates new letters
+     replies to letters posted by clients
+     reports letters posted by clients
+ */
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var storyTextView:TextView
@@ -33,7 +40,7 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         actionBar?.hide()
-        storyTextView = findViewById<TextView>(R.id.story)
+        storyTextView = findViewById<TextView>(R.id.story) as TextView
         setUpAnimation()
         initializePostDownloader()
     }
@@ -49,12 +56,18 @@ class HomeActivity : AppCompatActivity() {
     }
 
 
-
+    // setup a listener to notify a client of new letter replies
     private fun setUpBadgeNotificationListener(){
         val repliesBadge = findViewById<TextView>(R.id.reply_badge)
+
+        // adapter filters replies to just the replies received by this client,
+        // and replies that have not been seen by this client
         val listenerAdapter = RepliesAdapter(applicationContext,
             recipientAuthorFilter = FirebaseAuth.getInstance().uid, seenStatusFilter = false)
         repliesBadgeObject = Replies(listenerAdapter)
+
+        //observe a reply count live data to notify the client of exactly how many
+        // new/unseen replies are yet to be seen
         listenerAdapter.replyCountData.observe(this, Observer { count ->
             Log.i("Badge Count", count.toString())
             repliesBadge.text = count.toString()
@@ -62,6 +75,8 @@ class HomeActivity : AppCompatActivity() {
 
     }
 
+    // the post downloader begins the letter download process for all letters to be
+    // presented to clients
     private fun initializePostDownloader() {
         // initialize posts downloader
         // Observe for when the first post is downloaded
@@ -72,7 +87,10 @@ class HomeActivity : AppCompatActivity() {
             } })
     }
 
+    // update the view from one letter to the other
+    @SuppressLint("SetTextI18n")
     private fun updateView() {
+        // if there's a recent post, show it
         recentPost.getRecentPost()?.let {
             // hide reload post button
             findViewById<Button>(R.id.reload_posts).visibility = View.GONE
@@ -80,6 +98,7 @@ class HomeActivity : AppCompatActivity() {
             val story = it.subject + "\n\n" + it.message
             storyTextView.text = story
 
+            // if there's no recent post, give users the option to reply already seen posts
         } ?: run {
             findViewById<Button>(R.id.reload_posts).visibility = View.VISIBLE
             storyTextView.text = "\n\n\n\n\n\n\n\n\n No New Letters Available At The Moment"
@@ -89,6 +108,7 @@ class HomeActivity : AppCompatActivity() {
 
     }
 
+    // setup the letter swipe animation process
     private fun setUpAnimation() {
         fade = AnimationUtils.loadAnimation(this, R.anim.fade)
         handFade =  AnimationUtils.loadAnimation(this, R.anim.hand_fade)
@@ -129,6 +149,8 @@ class HomeActivity : AppCompatActivity() {
             }
         })
     }
+
+    // when the next letter (pray) button is clicked, show the next letter
     fun nextLetter(view: View) {
         currentPost?.let {
             it.viewCount += 1
@@ -139,16 +161,17 @@ class HomeActivity : AppCompatActivity() {
         praySticker.startAnimation(handFade)
     }
 
+    // no new letters are available, reload already seen letters
     fun reloadLetters(view: View) {
         initializePostDownloader()
     }
 
     //writing a letter
     fun createNewLetter(view: View) {
-        var i = Intent(this@HomeActivity, CreatePostActivity::class.java )
-        startActivity(i)
+        startActivity(Intent(this@HomeActivity, CreatePostActivity::class.java ))
     }
 
+    // reply to a letter
     fun replyToLetter(view: View) {
         if (currentPost != null) {
             val intent = Intent(this@HomeActivity, CreateReplyActivity::class.java)
@@ -163,9 +186,10 @@ class HomeActivity : AppCompatActivity() {
 
     }
 
+    // report a letter
     fun createReport(view: View) {
         if (currentPost != null) {
-            val intent = Intent(this@HomeActivity, CreateReportActivity::class.java)
+            val intent = Intent(this@HomeActivity, CreatePostReportActivity::class.java)
             intent.putExtra("postId", currentPost!!.postId)
             intent.putExtra("authorId", currentPost!!.authorId)
             startActivity(intent)
@@ -181,22 +205,24 @@ class HomeActivity : AppCompatActivity() {
 
     }
 
+    // view client's replies from other clients
     fun viewMyReplies(view: View) {
-        var i = Intent(this@HomeActivity, MyRepliesActivity::class.java )
-        startActivity(i)
-
+        startActivity(Intent(this@HomeActivity, MyRepliesActivity::class.java ))
     }
-    fun viewMyPosts(view: View){
-        var i = Intent(this@HomeActivity, MyPostsActivity::class.java )
-        startActivity(i)
 
+    // view all letters posted by client
+    fun viewMyPosts(view: View){
+        startActivity(Intent(this@HomeActivity, MyPostsActivity::class.java ))
     }
 
     // display more information pop up message
     private fun signOut() {
         FirebaseAuth.getInstance().signOut()
         startActivity(Intent(this, LoginActivity::class.java))
+        finish()
     }
+
+    // confirm sign out message
     private fun confirmDialogue() {
         val dialogBuilder = AlertDialog.Builder(this)
         dialogBuilder.setMessage("Are You Sure You Want To SignOut?")

@@ -17,7 +17,7 @@ class MyPostsActivity : AppCompatActivity() {
 
     private lateinit var listView: ListView
     private lateinit var myPosts: MyPosts
-    lateinit var myPostsAdapter: PostsAdapter
+    private lateinit var myPostsAdapter: PostsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,11 +25,7 @@ class MyPostsActivity : AppCompatActivity() {
         actionBar?.hide()
 
         listView = findViewById<ListView>(R.id.list_view)
-
-
     }
-
-
 
     override fun onPause() {
         myPosts.unregisterListener()
@@ -49,10 +45,8 @@ class MyPostsActivity : AppCompatActivity() {
     }
 
     fun goToLetters(view: View) {
-
-        var i = Intent(this@MyPostsActivity, HomeActivity::class.java )
-        startActivity(i)
-
+        startActivity(Intent(this@MyPostsActivity, HomeActivity::class.java ))
+        finish()
     }
 
 

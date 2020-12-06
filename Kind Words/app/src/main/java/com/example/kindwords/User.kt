@@ -231,14 +231,21 @@ class Report( Subject: String, Body: String) {
     var message: String = Body
     var postId: String = ""
     var authorId: String = ""
+    var replyId: String = ""
     private var reference = FirebaseDatabase.getInstance().reference.child("reports")
 
-    fun submitReport(postID: String, authorID: String) {
+    fun submitPostReport(postID: String, authorID: String) {
         postId = postID
         authorId = authorID
         val key = (reference.push()).key.toString()
         reference.child(key).setValue(this)
 
+    }
+
+    fun submitReplyReport(replyId: String) {
+        this.replyId = replyId
+        val key = (reference.push()).key.toString()
+        reference.child(key).setValue(this)
     }
 }
 

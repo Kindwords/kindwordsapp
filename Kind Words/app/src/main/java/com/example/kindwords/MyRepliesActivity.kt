@@ -19,9 +19,6 @@ class MyRepliesActivity : AppCompatActivity() {
 
         listView = findViewById<ListView>(R.id.list_view)
 
-
-
-
     }
 
     override fun onBackPressed() {

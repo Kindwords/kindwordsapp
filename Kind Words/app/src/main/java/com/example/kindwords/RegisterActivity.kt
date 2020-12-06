@@ -9,6 +9,10 @@ import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 
+/*
+    This activity class handles the registration process for a client
+    It also automatically logs them into the newly created account
+ */
 class RegisterActivity : AppCompatActivity() {
     private lateinit var emailTextView: TextView
     private lateinit var passwordTextView: TextView
@@ -28,13 +32,14 @@ class RegisterActivity : AppCompatActivity() {
 
     }
 
-    // register user account
+    // register a new account
     fun signUp(view: View) {
         val user = emailTextView.text.toString()
         val pass = passwordTextView.text.toString()
         val passConfirm = confirmPasswordView.text.toString()
 
-        if (user.replace(" ", "") == "" || pass.replace(" ", "") == "") {
+        if (user.replace(" ", "") == ""
+            || pass.replace(" ", "") == "") {
             emptyLoginField()
         }
         else if (pass != passConfirm) {
@@ -46,8 +51,7 @@ class RegisterActivity : AppCompatActivity() {
         else if (!validator.validPassword(pass)) {
             failedPasswordValidation()
         }
-        else
-        {
+        else {
             Log.i("TAG", "Attempting to Log register User")
             auth.createUserWithEmailAndPassword(user, pass)
                 .addOnCompleteListener { task ->
@@ -68,55 +72,51 @@ class RegisterActivity : AppCompatActivity() {
             .addOnCompleteListener{task ->
                 if (task.isSuccessful) {
                     Log.i("TAG", "signIn successful")
-                    val intent = Intent(this@RegisterActivity, HomeActivity::class.java )
+                    val intent = Intent(this@RegisterActivity,
+                        HomeActivity::class.java )
                     intent.putExtra("UID", auth.uid)
                     startActivity(intent)
-                }
-                else loginFailed()
+                } else loginFailed()
             }
-
-
     }
 
-    // redirect user to login page. Case where they don't have an account
+    // redirect client to login page.
     fun login(view: View) {
         startActivity(Intent(this@RegisterActivity, LoginActivity::class.java ))
     }
 
-    // Log details for testing
-    //Toast.makeText(applicationContext, "Please enter a valid password!", Toast.LENGTH_LONG).show()
-    //Toast.makeText(applicationContext, "Registration successful!", Toast.LENGTH_LONG).show()
-    //                        progressBar!!.visibility = View.GONE
-
+   // empty pass and email fields
     private fun emptyLoginField() {
-        Toast.makeText(applicationContext, "Please enter a non-empty Username & Password!", Toast.LENGTH_LONG).show()
-        return
+        Toast.makeText(applicationContext, "Please enter a non-empty Username & Password!",
+            Toast.LENGTH_LONG).show()
     }
 
+    // pass and pass confirmation do not match
     private fun failedPasswordConfirmation() {
-        Toast.makeText(applicationContext, "Please make sure the passwords match!", Toast.LENGTH_LONG).show()
-        return
+        Toast.makeText(applicationContext, "Please make sure the passwords match!",
+            Toast.LENGTH_LONG).show()
     }
 
+    // email does not appear to be in proper email format
     private fun failedEmailValidation() {
-        Toast.makeText(applicationContext, "Please enter a valid email!", Toast.LENGTH_LONG).show()
-        return
+        Toast.makeText(applicationContext, "Please enter a valid email!",
+            Toast.LENGTH_LONG).show()
     }
 
+    // password does not meet password requirements
     private fun failedPasswordValidation() {
-        Toast.makeText(applicationContext, "Invalid password!. Must be at least 1 letter,  1 number, min 6 chars, max 8 chars", Toast.LENGTH_LONG).show()
-        return
+        Toast.makeText(applicationContext, "Invalid password!. Must be at least 1 letter,  " +
+                "1 number, min 6 chars, max 8 chars", Toast.LENGTH_LONG).show()
     }
+
+    // wrong login credentials
     private fun loginFailed() {
-        Toast.makeText(applicationContext, "Invalid log-in credentials! Please try again.", Toast.LENGTH_LONG).show()
-        return
+        Toast.makeText(applicationContext, "Invalid log-in credentials! Please try again.",
+            Toast.LENGTH_LONG).show()
     }
-
+    // can't signUp: issue connecting to database
     private fun signUpFailed() {
-        Toast.makeText(applicationContext, "Sign-up failed. Try a different email or wait a few minutes.", Toast.LENGTH_LONG).show()
-        return
+        Toast.makeText(applicationContext, "Sign-up failed. Try a different email " +
+                "or wait a few minutes.", Toast.LENGTH_LONG).show()
     }
-
-
-
 }

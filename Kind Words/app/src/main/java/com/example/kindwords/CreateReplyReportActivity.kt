@@ -7,21 +7,20 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 
-class CreateReportActivity : AppCompatActivity() {
+class CreateReplyReportActivity : AppCompatActivity() {
     private lateinit var mReport : Report
-    private lateinit var postId: String
-    private lateinit var authorId: String
+    private lateinit var replyId : String
     private lateinit var subjectView: TextView
     private lateinit var messageView: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_create_report)
+        setContentView(R.layout.activity_create_reply_report)
         actionBar?.hide()
         subjectView = findViewById(R.id.subject)
         messageView = findViewById(R.id.message)
-        postId = intent.getStringExtra("postId") as String
-        authorId = intent.getStringExtra("authorId") as String
+         replyId = intent.getStringExtra("replyId") as String
+
     }
 
     private fun validateFields(): Boolean {
@@ -34,7 +33,7 @@ class CreateReportActivity : AppCompatActivity() {
     fun addPostToDatabase(view: View) {
         if (validateFields()) {
             mReport = Report(subjectView.text.toString() , messageView.text.toString())
-            mReport.submitReport(postId, authorId)
+            mReport.submitReplyReport(replyId)
             Toast.makeText(applicationContext, "Report was successful!", Toast.LENGTH_LONG).show()
             finish()
         } else {
@@ -44,9 +43,8 @@ class CreateReportActivity : AppCompatActivity() {
 
     }
 
-    fun goToHome(view: View) {
-        var i = Intent(this@CreateReportActivity, HomeActivity::class.java )
-        startActivity(i)
+    fun finish(view: View) {
+        finish()
     }
 
 

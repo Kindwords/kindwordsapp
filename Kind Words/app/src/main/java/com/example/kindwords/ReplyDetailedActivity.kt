@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.View
 import android.widget.RatingBar
 import android.widget.TextView
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.google.firebase.database.FirebaseDatabase
 
@@ -65,6 +66,15 @@ class ReplyDetailedActivity : AppCompatActivity() {
     private fun ratingChange(rating: Float) {
         FirebaseDatabase.getInstance().reference.child("replies").child(replyId).
         child("rating").setValue(rating.toString())
+    }
+
+    fun reportReply(view: View) {
+            val intent = Intent(this@ReplyDetailedActivity,
+                CreateReplyReportActivity::class.java)
+            intent.putExtra("replyId", replyId)
+
+            startActivity(intent)
+
     }
 
     fun switchPostReply(view: View) {

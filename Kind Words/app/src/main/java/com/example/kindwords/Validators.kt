@@ -1,5 +1,6 @@
 package com.example.kindwords
 
+// This Code Was Borrowed From The Class Example on Firebase
 class Validators {
     fun validEmail(email: String?) : Boolean {
         if (email.isNullOrEmpty()) {

@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity android:name="com.example.kindwords.MainActivity"
+            android:screenOrientation ="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,48 +21,66 @@
         </activity>
 
         <activity android:name="com.example.kindwords.LoginActivity"
+            android:screenOrientation ="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
         </activity>
 
         <activity android:name="com.example.kindwords.CreatePostActivity"
+            android:screenOrientation ="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
         </activity>
 
-        <activity android:name="com.example.kindwords.CreateReportActivity"
+        <activity android:name="com.example.kindwords.CreatePostReportActivity"
+            android:screenOrientation ="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
+        </activity>
+
+        <activity android:name="com.example.kindwords.CreateReplyReportActivity"
+            android:screenOrientation ="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
         </activity>
 
         <activity android:name="com.example.kindwords.MyRepliesActivity"
+            android:screenOrientation ="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
         </activity>
 
         <activity android:name="com.example.kindwords.RegisterActivity"
+            android:screenOrientation ="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
         </activity>
 
         <activity android:name="com.example.kindwords.HomeActivity"
+            android:screenOrientation ="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
         </activity>
 
         <activity android:name="com.example.kindwords.CreateReplyActivity"
+            android:screenOrientation ="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
         </activity>
 
 
         <activity android:name="com.example.kindwords.ReplyDetailedActivity"
+            android:screenOrientation ="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         </activity>
+
         <activity android:name="com.example.kindwords.PostDetailedActivity"
+            android:screenOrientation ="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         </activity>
+
         <activity android:name="com.example.kindwords.MyPostsActivity"
+            android:screenOrientation ="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         </activity>
 

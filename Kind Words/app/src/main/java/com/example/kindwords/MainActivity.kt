@@ -16,11 +16,10 @@ class MainActivity : AppCompatActivity() {
         if (auth.currentUser != null) { // user is signed in
             startActivity(Intent(this@MainActivity, HomeActivity::class.java))
         }
-        else {
+        else { // user is not signed in, sign them in
             startActivity(Intent(this@MainActivity, RegisterActivity::class.java))
         }
         finish()
-
     }
 
 
