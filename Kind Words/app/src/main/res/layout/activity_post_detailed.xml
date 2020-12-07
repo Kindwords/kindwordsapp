@@ -15,7 +15,6 @@
         android:weightSum="10">
 
         <ImageView
-            android:id="@+id/advice_list"
             android:layout_width="90dp"
             android:layout_height="90dp"
             android:contentDescription="@string/img_str"
@@ -41,7 +40,8 @@
                 android:gravity="center|top"
                 android:textSize="20sp"
                 android:padding="20dp"
-                android:text="@string/story_str" />
+                android:text="@string/story_str"
+                android:layout_marginEnd="10dp" />
 
         </ScrollView>
 
@@ -56,7 +56,6 @@
             app:srcCompat="@drawable/letter_inbox2" />
 
         <View
-            android:id="@+id/view"
             android:layout_width="match_parent"
             android:layout_height="10dp" />
 

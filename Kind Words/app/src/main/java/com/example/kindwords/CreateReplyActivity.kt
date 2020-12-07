@@ -7,6 +7,9 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 
+/*
+    Create a new Reply to a post/letter
+ */
 class CreateReplyActivity : AppCompatActivity() {
     private lateinit var mReply: Reply
     private lateinit var postId: String
@@ -26,15 +29,17 @@ class CreateReplyActivity : AppCompatActivity() {
 
     }
 
+    // ensure all fields of the reply are filled up
     private fun validateFields(): Boolean {
         if (subjectView.text.toString().replace(" ", "") == "" ||
             messageView.text.toString().replace(" ", "") == ""
         ) {
-            return false;
+            return false
         }
-        return true;
+        return true
     }
 
+    // submit the reply to the database
     fun addReplyToDatabase(view: View) {
         if (validateFields()) {
             mReply.message = messageView.text.toString()
@@ -53,10 +58,10 @@ class CreateReplyActivity : AppCompatActivity() {
         }
     }
 
-
-        fun goToHome(view: View) {
+    // return to the database
+    fun goToHome(view: View) {
         startActivity(Intent(this@CreateReplyActivity, HomeActivity::class.java ))
-        }
+    }
 
 
 

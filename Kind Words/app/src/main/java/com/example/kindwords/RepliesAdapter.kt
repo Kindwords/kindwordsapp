@@ -13,6 +13,10 @@ import androidx.lifecycle.MutableLiveData
 import java.io.Serializable
 import kotlin.collections.ArrayList
 
+/*
+    this adapter handles  the list views for replies to letters/posts
+    It also enables letters to be filtered by a certain criteria
+ */
 class RepliesAdapter(mContext: Context, recipientFilter: String? = null,
                      recipientAuthorFilter: String? = null,
                     seenStatusFilter:Boolean? = null) : BaseAdapter(), Serializable{
@@ -54,12 +58,12 @@ class RepliesAdapter(mContext: Context, recipientFilter: String? = null,
         } else {
             holder = newView?.tag as ViewHolder
         }
-        holder.textView?.text = "${curr.subject}"
+        holder.textView?.text = curr.subject
         // set badge
         if (curr.seenStatus) holder.badgeIcon?.visibility = View.GONE
 
 
-        // when the reply badge is clicked, show the detailed reply
+        // when the reply badge is clicked, show the detailed view of the reply
         holder.clickView?.setOnClickListener {
             val intent = Intent(parent.context, ReplyDetailedActivity::class.java)
             intent.putExtra("subject", curr.subject)
@@ -77,7 +81,8 @@ class RepliesAdapter(mContext: Context, recipientFilter: String? = null,
 
 
         }
-
+        // duplicated view for viewing the details of a reply
+        // duplicated to account for multiple click regions
         holder.textView?.setOnClickListener {
             val intent = Intent(parent.context, ReplyDetailedActivity::class.java)
             intent.putExtra("subject", curr.subject)
@@ -108,14 +113,21 @@ class RepliesAdapter(mContext: Context, recipientFilter: String? = null,
 
     }
 
-
+    // filter reply by its seen status
+    // used for notifying clients of new/unseen replies
     private fun filterBySeenStatus(listItem: Reply): Boolean {
         return mSeenStatusFilter == null || mSeenStatusFilter == listItem.seenStatus
     }
-    private fun filterbyRecipient(listItem: Reply): Boolean {
+
+    // filter a reply by its recipient post
+    // used for grabbing the post the reply replied to
+    private fun filterByRecipient(listItem: Reply): Boolean {
         return mRecipientFilter == null || mRecipientFilter == listItem.recipientPostId
     }
 
+    // filter a reply by the author of the post the reply replied to
+    // Useful for reporting a reply, grabbing a post the reply replied to, viewing all replies
+    // sent to a particular client, etc
     private fun filterByAuthor(listItem: Reply): Boolean {
         return mAuthorFilter == null || mAuthorFilter == listItem.recipientAuthorId
     }
@@ -124,32 +136,13 @@ class RepliesAdapter(mContext: Context, recipientFilter: String? = null,
     fun add(listItem: Reply) {
         // apply one or more filters to the list adapter
         // discriminate posts on authorid, recipientid, or seen status
-        if (filterByAuthor(listItem) && filterbyRecipient(listItem)
+        if (filterByAuthor(listItem) && filterByRecipient(listItem)
             && filterBySeenStatus(listItem)) {
             list.add(listItem)
             replyCountData.value = list.size
             notifyDataSetChanged()
         }
     }
-
-    fun remove(index: Int) {
-        list.removeAt(index)
-        replyCountData.value = 100
-        notifyDataSetChanged()
-    }
-
-    fun removeAllViews() {
-        list.clear()
-        notifyDataSetChanged()
-    }
-
-    fun setListAdapter(newList: ArrayList<Reply>) {
-        list = ArrayList()
-        for (reply in newList) list.add(reply)
-        notifyDataSetChanged()
-    }
-
-    fun getList(): ArrayList<Reply> {return list}
 
     companion object {
         private var inflater: LayoutInflater? = null

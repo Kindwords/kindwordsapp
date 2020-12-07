@@ -8,7 +8,6 @@
     tools:context=".RegisterActivity">
 
     <LinearLayout
-        android:id="@+id/linearLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="1dp"
@@ -28,7 +27,6 @@
         app:layout_constraintVertical_bias="0.0">
 
         <View
-            android:id="@+id/empty_space1"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_weight="8" />
@@ -42,20 +40,16 @@
             android:layout_marginRight="40dp"
             android:background="@drawable/rounder"
             android:drawableStart="@drawable/person"
-            android:drawableLeft="@drawable/person"
             android:drawablePadding="10dp"
             android:gravity="center|start"
             android:hint="@string/email_hint_str"
             android:importantForAutofill="no"
             android:inputType="textEmailAddress"
             android:paddingStart="20dp"
-            android:paddingLeft="20dp"
             android:paddingEnd="25dp"
-            android:paddingRight="25dp"
             android:layout_weight="2"/>
 
         <View
-            android:id="@+id/empty_space2"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_weight="1" />
@@ -68,19 +62,15 @@
             android:layout_marginRight="40dp"
             android:background="@drawable/rounder"
             android:drawableStart="@drawable/lock"
-            android:drawableLeft="@drawable/person"
             android:drawablePadding="10dp"
             android:gravity="center|start"
             android:hint="@string/password_hint"
             android:importantForAutofill="no"
             android:inputType="textPassword"
             android:paddingStart="20dp"
-            android:paddingLeft="20dp"
             android:paddingEnd="25dp"
-            android:paddingRight="25dp"
             android:layout_weight="2"/>
         <View
-            android:id="@+id/empty_space3"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_weight="1" />
@@ -94,25 +84,20 @@
             android:layout_weight="2"
             android:background="@drawable/rounder"
             android:drawableStart="@drawable/lock"
-            android:drawableLeft="@drawable/person"
             android:drawablePadding="10dp"
             android:gravity="center|start"
             android:hint="@string/confirm_password_hint_str"
             android:importantForAutofill="no"
             android:inputType="textPassword"
             android:paddingStart="20dp"
-            android:paddingLeft="20dp"
-            android:paddingEnd="25dp"
-            android:paddingRight="25dp" />
+            android:paddingEnd="25dp" />
 
         <View
-            android:id="@+id/empty_space4"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_weight="1" />
 
         <Button
-            android:id="@+id/signup_button"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginLeft="100dp"
@@ -123,13 +108,11 @@
             android:onClick="signUp"/>
 
         <View
-            android:id="@+id/empty_space5"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_weight="1" />
 
         <TextView
-            android:id="@+id/login"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginLeft="60dp"
@@ -143,7 +126,6 @@
             android:onClick="login"/>
 
         <View
-            android:id="@+id/empty_space6"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_weight="8" />

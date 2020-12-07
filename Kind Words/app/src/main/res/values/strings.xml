@@ -1,19 +1,13 @@
 <resources>
     <string name="app_name">Kind Words</string>
-    <string name="user_name_hint">User Name</string>
     <string name="password_hint">Password</string>
     <string name="login_button_str">LOGIN</string>
-    <string name="forgot_password">Forgot Password?</string>
     <string name="sign_up_str">Create Account</string>
     <string name="email_hint_str">Email</string>
     <string name="confirm_password_hint_str">Confirm Password</string>
     <string name="sign_up_button_str">SIGN UP</string>
     <string name="login_str">LOGIN</string>
     <string name="img_str">img</string>
-    <string name="user_name">JOHN DOE</string>
-    <string name="points_str">0</string>
-    <string name="line_str">___________________________</string>
-    <string name="inbox">inbox</string>
     <string name="profile_img_button">profile_img_button</string>
     <string name="advice_link_button">advice_link_button</string>
     <string name="story_str">
@@ -29,6 +23,11 @@
     <string name="write_advice_hint">Write Advice Here!</string>
     <string name="send_button_str">SEND</string>
     <string name="write_your_letter_here_hint_str">Write your letter here!</string>
-    <string name="fake_advice_tab_str">------------------------------------------------------------- \n \n First Advice Item, click to read! \n\n-------------------------------------------------------------</string>
     <string name="rstr">TextView</string>
+    <string name="notification_badge_count">1</string>
+    <string name="subject_string">Subject</string>
+    <string name="write_your_report_here">Write Your Report Here</string>
+    <string name="subject">Subject</string>
+    <string name="no_letters_available">\n\n\n\n\n\n\n\n\n No New Letters Available At The Moment</string>
+    <string name="reload_letters">Reload Letters</string>
 </resources>

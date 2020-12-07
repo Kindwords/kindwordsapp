@@ -20,7 +20,6 @@
 
 
         <ImageView
-            android:id="@+id/advice_list"
             android:layout_width="90dp"
             android:layout_height="90dp"
             android:alpha="0.7"
@@ -30,7 +29,6 @@
             app:srcCompat="@drawable/advice_link" />
 
         <ScrollView
-            android:id="@+id/scrollview"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginLeft="40dp"
@@ -60,7 +58,6 @@
             app:srcCompat="@drawable/letter_inbox2" />
 
         <View
-            android:id="@+id/view"
             android:layout_width="match_parent"
             android:layout_height="20dp" />
 
@@ -76,7 +73,6 @@
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/imageView"
         android:layout_width="90dp"
         android:layout_height="90dp"
         android:layout_gravity="center"
@@ -87,11 +83,10 @@
         android:scaleType="fitXY"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/main_linearLayout"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/letter" />
 
     <ImageView
-        android:id="@+id/report"
         android:layout_width="90dp"
         android:layout_height="90dp"
         android:clickable="true"

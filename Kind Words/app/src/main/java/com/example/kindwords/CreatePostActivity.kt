@@ -6,6 +6,9 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+/*
+    Create A new letter Activity
+ */
 
 class CreatePostActivity : AppCompatActivity() {
     private lateinit var mPost : Post
@@ -21,13 +24,15 @@ class CreatePostActivity : AppCompatActivity() {
         messageView = findViewById(R.id.message)
     }
 
+    // Ensure that all fields of the letter are filled
     private fun validateFields(): Boolean {
         if (subjectView.text.toString().replace(" ", "") == "" ||
             messageView.text.toString().replace(" ", "") == ""
         ) { return false; }
-        return true;
+        return true
     }
 
+    // submit the letter to the database
     fun addPostToDatabase(view: View) {
         if (validateFields()) {
             mPost.subject = subjectView.text.toString()
@@ -42,8 +47,9 @@ class CreatePostActivity : AppCompatActivity() {
 
     }
 
+    // return to the home page
     fun goToHome(view: View) {
-        var i = Intent(this@CreatePostActivity, HomeActivity::class.java )
+        val i = Intent(this@CreatePostActivity, HomeActivity::class.java )
         startActivity(i)
     }
 

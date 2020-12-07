@@ -23,8 +23,8 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         actionBar?.hide()
-        userNameView = findViewById(R.id.email);
-        userPasswordView = findViewById(R.id.password);
+        userNameView = findViewById(R.id.email)
+        userPasswordView = findViewById(R.id.password)
     }
 
     // create a new account

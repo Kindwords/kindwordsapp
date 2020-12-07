@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/429764174/Kindwords.iml" filepath="$PROJECT_DIR$/.idea/modules/429764174/Kindwords.iml" group="Kindwords" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app.iml" group="Kindwords/app" />
+    </modules>
+  </component>
+</project>

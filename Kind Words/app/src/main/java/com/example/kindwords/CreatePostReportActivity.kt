@@ -7,6 +7,9 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 
+/*
+ Create a new Report for a post (offensive content)
+ */
 class CreatePostReportActivity : AppCompatActivity() {
     private lateinit var mReport : Report
     private lateinit var postId: String
@@ -24,14 +27,16 @@ class CreatePostReportActivity : AppCompatActivity() {
         authorId = intent.getStringExtra("authorId") as String
     }
 
+    // ensure all fields of the post are filled
     private fun validateFields(): Boolean {
         if (subjectView.text.toString().replace(" ", "") == "" ||
             messageView.text.toString().replace(" ", "") == ""
         ) { return false; }
-        return true;
+        return true
     }
 
-    fun addPostToDatabase(view: View) {
+    // submit the report to the database
+    fun addReportToDatabase(view: View) {
         if (validateFields()) {
             mReport = Report(subjectView.text.toString() , messageView.text.toString())
             mReport.submitPostReport(postId, authorId)
@@ -44,8 +49,9 @@ class CreatePostReportActivity : AppCompatActivity() {
 
     }
 
+    // return to the home page
     fun goToHome(view: View) {
-        var i = Intent(this@CreatePostReportActivity, HomeActivity::class.java )
+        val i = Intent(this@CreatePostReportActivity, HomeActivity::class.java )
         startActivity(i)
     }
 

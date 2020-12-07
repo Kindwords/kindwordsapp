@@ -8,7 +8,6 @@
     tools:context=".MyRepliesActivity">
 
     <LinearLayout
-        android:id="@+id/linearLayout3"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
@@ -19,7 +18,6 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/go_to_letters"
             android:layout_width="90dp"
             android:layout_height="90dp"
             android:alpha="0.9"

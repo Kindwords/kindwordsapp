@@ -2,19 +2,18 @@ package com.example.kindwords
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
-import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.MutableLiveData
-import kotlin.collections.ArrayList
-
-class PostsAdapter(val mContext: Context, uidFilter: String? = null,
+/*
+ this adapter handles  the list views for posts/letters
+ It also enables posts to be filtered by a certain criteria
+ */
+class PostsAdapter(mContext: Context, uidFilter: String? = null,
                    postFilter: String? = null) : BaseAdapter(){
 
      private var postList = ArrayList<Post>()
@@ -25,11 +24,11 @@ class PostsAdapter(val mContext: Context, uidFilter: String? = null,
 
     init{postCountData.value = postList.size }
     override fun getCount(): Int {
-        return postList.size as Int
+        return postList.size
     }
 
     override fun getItem(position: Int): Any {
-        return postList.get(position) as Post
+        return postList[position]
     }
 
     override fun getItemId(position: Int): Long {
@@ -40,7 +39,7 @@ class PostsAdapter(val mContext: Context, uidFilter: String? = null,
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View? {
         var newView = convertView
         val holder: ViewHolder
-        val curr = postList[position] as Post
+        val curr = postList[position]
 
         if (null == convertView) {
             holder = ViewHolder()
@@ -52,7 +51,7 @@ class PostsAdapter(val mContext: Context, uidFilter: String? = null,
         } else {
             holder = newView?.tag as ViewHolder
         }
-        holder.textView?.text = "${curr.subject}"
+        holder.textView?.text = curr.subject
         // view post detailed
         holder.textView?.setOnClickListener {
             val intent = Intent(parent.context, PostDetailedActivity::class.java)
@@ -61,9 +60,6 @@ class PostsAdapter(val mContext: Context, uidFilter: String? = null,
             parent.context.startActivity(intent)
         }
 
-        //todo on long click, delete the post and associated replies (delete replies first)
-        holder.textView?.setOnLongClickListener{
-        true}
         return newView
     }
 
@@ -73,14 +69,20 @@ class PostsAdapter(val mContext: Context, uidFilter: String? = null,
 
     }
 
+    // filter by a postId
+    // Useful when looking for a particular post regardless of author
     private fun filterByPost(listItem: Post): Boolean {
         return mPostIdFilter == null || mPostIdFilter == listItem.postId
     }
 
+    // filter by the a post's author id. useful when looking for a post by a particular author
     private fun filterByUid(listItem: Post): Boolean {
         return mUidFilter == null || mUidFilter == listItem.authorId
     }
+
     fun add(listItem: Post) {
+        // apply filters
+        // can apply 0, 1 or more filters at the same time
         if (filterByPost(listItem) && filterByUid(listItem)) {
             postList.add(listItem)
             postCountData.value = postList.size
@@ -88,19 +90,6 @@ class PostsAdapter(val mContext: Context, uidFilter: String? = null,
         }
     }
 
-
-    fun removeAllViews() {
-        postList.clear()
-        notifyDataSetChanged()
-    }
-
-    fun setList(newList: ArrayList<Post>) {
-        postList = ArrayList()
-        for (post in newList) postList.add(post)
-        notifyDataSetChanged()
-    }
-
-    fun getList(): ArrayList<Post> {return postList}
 
     companion object {
         private var inflater: LayoutInflater? = null

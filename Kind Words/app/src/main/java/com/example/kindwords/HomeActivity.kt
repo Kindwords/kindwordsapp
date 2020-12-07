@@ -1,9 +1,7 @@
 package com.example.kindwords
 
 import android.annotation.SuppressLint
-import android.content.DialogInterface
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -14,6 +12,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.google.firebase.auth.FirebaseAuth
 
@@ -40,7 +39,7 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         actionBar?.hide()
-        storyTextView = findViewById<TextView>(R.id.story) as TextView
+        storyTextView = findViewById(R.id.story)
         setUpAnimation()
         initializePostDownloader()
     }
@@ -156,7 +155,7 @@ class HomeActivity : AppCompatActivity() {
             it.viewCount += 1
             it.update() // update post at the database. I.E increase its seen count
         }
-        storyTextView.startAnimation(fade);
+        storyTextView.startAnimation(fade)
         praySticker.alpha = 1F
         praySticker.startAnimation(handFade)
     }
@@ -200,6 +199,7 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
+    // sign out of the app
     fun signOut(view: View) {
         confirmDialogue()
 
@@ -227,10 +227,9 @@ class HomeActivity : AppCompatActivity() {
         val dialogBuilder = AlertDialog.Builder(this)
         dialogBuilder.setMessage("Are You Sure You Want To SignOut?")
             .setCancelable(false)
-            .setPositiveButton("Confirm", DialogInterface.OnClickListener { _, _ -> signOut()})
+            .setPositiveButton("Confirm") { _, _ -> signOut() }
             // negative button text and action
-            .setNegativeButton("Cancel", DialogInterface.OnClickListener {
-                    dialog, _ -> dialog.cancel() })
+            .setNegativeButton("Cancel") { dialog, _ -> dialog.cancel() }
 
         // create dialog box
         val alert = dialogBuilder.create()

@@ -1,12 +1,14 @@
 package com.example.kindwords
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 
+/*
+    Report a reply for offensive content
+ */
 class CreateReplyReportActivity : AppCompatActivity() {
     private lateinit var mReport : Report
     private lateinit var replyId : String
@@ -23,14 +25,16 @@ class CreateReplyReportActivity : AppCompatActivity() {
 
     }
 
+    // ensure all fields of the reply body are filled up
     private fun validateFields(): Boolean {
         if (subjectView.text.toString().replace(" ", "") == "" ||
             messageView.text.toString().replace(" ", "") == ""
         ) { return false; }
-        return true;
+        return true
     }
 
-    fun addPostToDatabase(view: View) {
+    // submit the report to the database
+    fun addReportToDatabase(view: View) {
         if (validateFields()) {
             mReport = Report(subjectView.text.toString() , messageView.text.toString())
             mReport.submitReplyReport(replyId)
@@ -43,6 +47,7 @@ class CreateReplyReportActivity : AppCompatActivity() {
 
     }
 
+    // return to the reply detailed view
     fun finish(view: View) {
         finish()
     }

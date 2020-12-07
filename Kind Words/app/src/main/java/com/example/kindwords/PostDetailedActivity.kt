@@ -6,9 +6,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
-
+/*
+    This activity class shows a detailed view of a post to the client
+ */
 class PostDetailedActivity : AppCompatActivity() {
-    lateinit var postId: String
     private lateinit var textView: TextView
 
 
@@ -25,6 +26,7 @@ class PostDetailedActivity : AppCompatActivity() {
         textView.text = subject + "\n\n" + message
     }
 
+    // return to the list view of posts
     fun goToMyPosts(view: View) {
         val i = Intent(this@PostDetailedActivity, MyPostsActivity::class.java )
         startActivity(i)

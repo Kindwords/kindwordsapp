@@ -1,6 +1,5 @@
 package com.example.kindwords
 
-import android.content.Context
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseAuth
@@ -8,10 +7,14 @@ import com.google.firebase.database.*
 import java.io.Serializable
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.HashMap
+/*
+    These group of objects handle requests to and from the database
+ */
 
+/*
+    This class handles request for all letters posted by the client
+ */
 class MyPosts(PostsAdapter: PostsAdapter) {
-    private val uid: String? = FirebaseAuth.getInstance().uid
     private var childEventListener: ChildEventListener? = null
     private var reference: DatabaseReference = FirebaseDatabase.getInstance().reference
         .child("posts")
@@ -49,8 +52,11 @@ class MyPosts(PostsAdapter: PostsAdapter) {
     fun unregisterListener() { childEventListener?.let{reference.removeEventListener(it)} }
 
 }
+
+/*
+    This object handles all replies sent to the client
+ */
 class Replies (RepliesAdapter: RepliesAdapter){
-    private val uid: String? = FirebaseAuth.getInstance().uid
     private var childEventListener: ChildEventListener? = null
     private var reference: DatabaseReference = FirebaseDatabase.getInstance().reference
         .child("replies")
@@ -89,6 +95,9 @@ class Replies (RepliesAdapter: RepliesAdapter){
 
 }
 
+/*
+    This object handles the preview of letters in the home page
+ */
 class RecentPost {
     private var posts: Queue<Post>? = LinkedList()
     var initComplete = MutableLiveData<Boolean>()
@@ -111,6 +120,7 @@ class RecentPost {
                         newPost.viewCount = (data["viewCount"] as Long).toInt()
                         newPost.time = data["time"] as String
                         (posts as LinkedList<Post>).add(newPost)
+                        // let the home page show the first letter preview once its available
                         if (!initComplete.value!!) initComplete.value = true
                     }
 
@@ -127,12 +137,18 @@ class RecentPost {
             })
     }
 
+    // called by the homepage to check if at least one letter has been downloaded and is
+    // ready for preview
     fun getRecentPost(): Post? {
         return if (posts?.size == 0) null
         else posts?.remove()
     }
 }
 
+/*
+ The post object formats return data from the database for an easy and orderly  access
+ It also handles the database post requests to add and update posts to the data base
+ */
 class Post(var subject: String = "", var message: String = "" ): Serializable {
 
     var authorId = FirebaseAuth.getInstance().uid.toString()
@@ -165,24 +181,12 @@ class Post(var subject: String = "", var message: String = "" ): Serializable {
     fun update() {
         reference.child(postId).setValue(this) }
 
-    @Exclude
-    fun postExist(postId: String): Boolean {
-        return reference.child(postId).key != null
-    }
-
-    @Exclude
-    fun deletePostFromDatabase(context: Context) {
-        //todo subsequently delete all replies with this post as recipient
-        val repliesAdapter = RepliesAdapter(context, recipientFilter = postId)
-        val replies = Replies(repliesAdapter)
-        for (index in 0 until repliesAdapter.count) {
-            val reply = repliesAdapter.getItem(index) as Reply
-            reply.deleteReplyFromDatabase()
-        }
-        reference.child(postId).removeValue() }
-
 }
 
+/*
+ The reply object formats return data from the database for an easy and orderly  access
+ It also handles the database reply requests to add and update reply to the data base
+ */
 class Reply(var subject: String = "", var message: String = ""): Serializable {
 
     var authorId = FirebaseAuth.getInstance().uid.toString()
@@ -193,6 +197,7 @@ class Reply(var subject: String = "", var message: String = ""): Serializable {
     var seenStatus: Boolean = false
     lateinit var time: String
     private var reference = FirebaseDatabase.getInstance().reference.child("replies")
+
     private fun Date.toString(format: String, locale: Locale = Locale.getDefault()): String {
         val formatter = SimpleDateFormat(format, locale)
         return formatter.format(this)
@@ -213,11 +218,6 @@ class Reply(var subject: String = "", var message: String = ""): Serializable {
     }
 
     @Exclude
-    fun deleteReplyFromDatabase() {
-        reference.child(replyId).removeValue()
-    }
-
-    @Exclude
     fun updateReplyAtDatabase() {
         reference.child(replyId).setValue(this)
     }
@@ -226,12 +226,15 @@ class Reply(var subject: String = "", var message: String = ""): Serializable {
 
 }
 
+/*
+ The report object handles letter/post and reply reports to the database
+ */
 class Report( Subject: String, Body: String) {
     var subject: String = Subject
     var message: String = Body
-    var postId: String = ""
-    var authorId: String = ""
-    var replyId: String = ""
+    private var postId: String = ""
+    private var authorId: String = ""
+    private var replyId: String = ""
     private var reference = FirebaseDatabase.getInstance().reference.child("reports")
 
     fun submitPostReport(postID: String, authorID: String) {
