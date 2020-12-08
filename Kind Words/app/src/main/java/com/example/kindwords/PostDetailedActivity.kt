@@ -28,8 +28,9 @@ class PostDetailedActivity : AppCompatActivity() {
 
     // return to the list view of posts
     fun goToMyPosts(view: View) {
-        val i = Intent(this@PostDetailedActivity, MyPostsActivity::class.java )
-        startActivity(i)
+       // val i = Intent(this@PostDetailedActivity, MyPostsActivity::class.java )
+        //startActivity(i)
+        finish()
     }
 
 

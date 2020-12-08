@@ -43,11 +43,13 @@ class MyPostsActivity : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         myPosts.unregisterListener()
+        finish()
     }
 
     // go to the home page
     fun goToLetters(view: View) {
-        startActivity(Intent(this@MyPostsActivity, HomeActivity::class.java ))
+        //startActivity(Intent(this@MyPostsActivity, HomeActivity::class.java ))
+        myPosts.unregisterListener()
         finish()
     }
 

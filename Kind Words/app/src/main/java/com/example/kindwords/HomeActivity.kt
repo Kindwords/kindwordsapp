@@ -56,7 +56,7 @@ class HomeActivity : AppCompatActivity() {
 
 
     // setup a listener to notify a client of new letter replies
-    private fun setUpBadgeNotificationListener(){
+    private fun setUpBadgeNotificationListener(){5
         val repliesBadge = findViewById<TextView>(R.id.reply_badge)
 
         // adapter filters replies to just the replies received by this client,
@@ -100,6 +100,7 @@ class HomeActivity : AppCompatActivity() {
             // if there's no recent post, give users the option to reply already seen posts
         } ?: run {
             findViewById<Button>(R.id.reload_posts).visibility = View.VISIBLE
+            currentPost = null
             storyTextView.text = "\n\n\n\n\n\n\n\n\n No New Letters Available At The Moment"
             recentPost.initComplete.value = false
         }

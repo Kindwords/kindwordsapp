@@ -61,8 +61,9 @@ class ReplyDetailedActivity : AppCompatActivity() {
 
     // Go back to the replies list view
     fun viewMyReplies(view: View) {
-        val i = Intent(this@ReplyDetailedActivity, MyRepliesActivity::class.java )
-        startActivity(i)
+        //val i = Intent(this@ReplyDetailedActivity, MyRepliesActivity::class.java )
+        //startActivity(i)
+        finish()
     }
 
     // When the rating of the reply is changed, update tge database to reflect the changes

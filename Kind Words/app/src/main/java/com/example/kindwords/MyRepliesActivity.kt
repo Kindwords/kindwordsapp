@@ -46,7 +46,8 @@ class MyRepliesActivity : AppCompatActivity() {
 
     // go to the homepage
     fun goToHome(view: View) {
-        startActivity(Intent(this@MyRepliesActivity, HomeActivity::class.java ))
+        //startActivity(Intent(this@MyRepliesActivity, HomeActivity::class.java ))
+        finish()
     }
 
 
