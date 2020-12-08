@@ -46,6 +46,7 @@ class ReplyDetailedActivity : AppCompatActivity() {
 
         // Grab the post associated with the current reply
         val postsAdapter = PostsAdapter(applicationContext, postFilter = recipientId)
+        MyPosts(postsAdapter)
         postsAdapter.postCountData.observe(this, Observer { count ->
             Log.i("TAG", recipientId)
             Log.i("detail", postsAdapter.count.toString())
